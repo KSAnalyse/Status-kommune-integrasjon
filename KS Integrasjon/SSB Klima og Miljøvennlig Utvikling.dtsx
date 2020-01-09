@@ -5,214 +5,44 @@
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="SQL2018"
   DTS:CreatorName="KSINT\axel.hjelmervik.hansen"
-  DTS:DTSID="{A4E99146-47CD-4AE1-95AC-2987FEF62010}"
+  DTS:DTSID="{0F37727D-784C-4139-B018-285993F1A922}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="14.0.3026.27"
   DTS:LocaleID="1044"
-  DTS:ObjectName="SSB Barnehage"
+  DTS:ObjectName="SSB Klima og Miljøvennlig Utvikling"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="293"
-  DTS:VersionGUID="{2E7B4EFE-436E-4CCE-A576-94331577696D}">
+  DTS:VersionBuild="296"
+  DTS:VersionGUID="{DE9245AC-2172-44EE-A272-2281A54EF1E2}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\Barnehage"
+      DTS:refId="Package\Klima og Miljøvennlig Utvikling"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
       DTS:DTSID="{EEF430E0-A8FA-491B-9CF9-9A1A79444F82}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Barnehage">
+      DTS:ObjectName="Klima og Miljøvennlig Utvikling">
       <DTS:Variables />
       <DTS:Executables>
         <DTS:Executable
-          DTS:refId="Package\Barnehage\Les SSB_09345 Ansatte i barnehager, eierforhold, utdanning"
+          DTS:refId="Package\Klima og Miljøvennlig Utvikling\Les SSB_11844 Kapasitet, tilgjengelighet og reiselengde"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{75a8e168-ec4e-4db3-9ccb-af01b5a2294c}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
-          DTS:ObjectName="Les SSB_09345 Ansatte i barnehager, eierforhold, utdanning"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{87175433-C4F6-4E6D-9D6E-61FE32283CE9}"
-              SQLTask:SqlStatementSource="Use [Staging_ASSS]&#xA;&#xA;-- Variabels&#xA;Declare @TableVar varchar(5)&#xA;Declare @TableName varchar(150)&#xA;&#xA;-- Query variabels&#xA;Declare @Truncate_Query nvarchar(200)&#xA;&#xA;Set @TableVar = '09345'&#xA;Set @TableName = (SELECT table_name FROM information_schema.tables WHERE table_name LIKE'SSB_' + @TableVar + '%')&#xA;&#xA;Set @Truncate_Query = N'Truncate Table [' + @TableName + ']'&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA;&#x9;-- Declares&#xA;&#x9;declare @t table(Kommunenummer varchar(50), Eierkode varchar(50), Stillingskode varchar(50), Utdanningskode varchar(50), Variabel varchar(50), År Int, Verdi Numeric(18,4))&#xA;&#xA;&#x9;declare @m table(Kommunenavn varchar(150), Kommunenummer varchar(50), Eierforhold varchar(150), Eierkode varchar(50), Stillingsnavn varchar(150), Stillingskode varchar(50), &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;Utdanningsnavn varchar(150), Utdanningskode varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År Int, År2 Int)&#xA;&#x9;declare @m2 table(Kommunenavn varchar(150), Kommunenummer varchar(50), Eierforhold varchar(150), Eierkode varchar(50), Stillingsnavn varchar(150), Stillingskode varchar(50), &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;Utdanningsnavn varchar(150), Utdanningskode varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År Int, År2 Int)&#xA;&#x9;declare @m3 table(Kommunenavn varchar(150), Kommunenummer varchar(50), Eierforhold varchar(150), Eierkode varchar(50), Stillingsnavn varchar(150), Stillingskode varchar(50), &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;Utdanningsnavn varchar(150), Utdanningskode varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År Int, År2 Int)&#xA;&#x9;&#xA;&#x9;-- Inserts&#xA;&#x9;insert @t Exec SSB_Values_AlleAar @TabellNummer=@TableVar, @Omfang=0&#xA;&#x9;insert @m Exec SSB_Metadata @TabellNummer=@TableVar&#xA;&#x9;insert @m2 Exec SSB_Metadata @TabellNummer=@TableVar&#xA;&#x9;insert @m3 Exec SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA;&#x9;RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA;&#x9;set noexec on&#xA;end catch&#xA;&#xA;&#xA;-- Executes&#xA;Exec sp_executesql @Truncate_Query&#xA;&#xA;Insert Into [SSB_09345 Ansatte i barnehager, eierforhold, stilling, personellets utdanning]&#xA;&#xA;Select dat.Kommunenummer,&#xA;&#x9;dat.Eierkode,&#xA;&#x9;met.Eierforhold,&#xA;&#x9;dat.Utdanningskode,&#xA;&#x9;met2.Utdanningsnavn,&#xA;&#x9;dat.Variabel,&#xA;&#x9;met3.Variabelnavn,&#xA;&#x9;dat.År, &#xA;&#x9;SUM(dat.Verdi)&#xA;&#xA;from @t dat &#xA;Join @m met ON met.Eierkode = dat.Eierkode&#xA;Join @m2 met2 ON met2.Utdanningskode = dat.Utdanningskode&#xA;Join @m3 met3 ON met3.Variabel = dat.Variabel&#xA;&#xA;-- Barnehagelærer&#xA;-- Pedagogisk utdanning som tilsvarer utdanningskravet til styrer/pedagogisk leder&#xA;-- Annen pedagogisk utdanning&#xA;Where dat.Utdanningskode IN ('25', '26', '34')&#xA;&#xA;Group By dat.Kommunenummer, dat.Eierkode, met.Eierforhold, dat.Utdanningskode, met2.Utdanningsnavn, dat.Variabel, met3.Variabelnavn, dat.År&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Barnehage\Les SSB_12054 Barnehager, etter eierforhold"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
-          DTS:Description="Execute SQL Task"
-          DTS:DTSID="{594974B6-05F5-4087-8916-5EAA782F83E6}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="Les SSB_12054 Barnehager, etter eierforhold"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{87175433-C4F6-4E6D-9D6E-61FE32283CE9}"
-              SQLTask:SqlStatementSource="--Tabellnummer&#xA;Declare @TableVar varchar(5)&#xA;&#x9;Set @TableVar = '12054'&#xA;&#xA;--Declares&#xA;begin try&#xA;&#x9;declare @t table(Eierkode varchar(50), Kommunenummer varchar(50), Variabel varchar(50), År Int, Verdi numeric(18,4))&#xA;&#xA;&#x9;declare @m table(Eierforhold varchar(150), Eierkode varchar(50), Kommune Varchar(150), Kommunenummer varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År Int, År2 Int)&#xA;&#x9;declare @m2 table(Eierforhold varchar(150), Eierkode varchar(50), Kommune Varchar(150), Kommunenummer varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År Int, År2 Int)&#xA;&#xA;&#x9;Insert @t Exec Staging.dbo.SSB_Values_AlleAar @TabellNummer=@TableVar, @Omfang=0&#xA;&#xA;&#x9;Insert @m Exec Staging.dbo.SSB_Metadata @TabellNummer=@TableVar&#xA;&#x9;Insert @m2 Exec Staging.dbo.SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA;&#x9;RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA;&#x9;set noexec on&#xA;end catch&#xA;&#xA;Truncate Table Staging.[dbo].[SSB_12054 Barnehager, etter eierforhold]&#xA;&#xA;Insert Into Staging.[dbo].[SSB_12054 Barnehager, etter eierforhold]&#xA;&#xA;Select&#x9;dat.Kommunenummer,&#xA;&#x9;&#x9;dat.Eierkode,&#xA;&#x9;&#x9;met.Eierforhold,&#xA;&#x9;&#x9;dat.Variabel ,&#xA;&#x9;&#x9;met2.Variabelnavn,&#xA;&#x9;&#x9;dat.År, &#xA;&#x9;&#x9;dat.Verdi&#xA;&#xA;from @t dat &#xA;Join @m met On  met.Eierkode = dat.Eierkode&#xA;Join @m2 met2 On met2.Variabel = dat.Variabel&#xA;&#xA;--Leke og oppholdsareal (m2)&#xA;Where dat.Variabel = 'KOSbhg100000'&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Barnehage\Les SSB_12055 Leke- og oppholdsareal, etter eierforhold"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
-          DTS:Description="Execute SQL Task"
-          DTS:DTSID="{418CD7ED-08C9-40A1-949B-F3DE31C357AF}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="Les SSB_12055 Leke- og oppholdsareal, etter eierforhold"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{87175433-C4F6-4E6D-9D6E-61FE32283CE9}"
-              SQLTask:SqlStatementSource="--Tabellnummer&#xA;Declare @TableVar varchar(5)&#xA;&#x9;Set @TableVar = '12055'&#xA;&#xA;--Declares&#xA;begin try&#xA;&#x9;declare @t table(Kommunenummer varchar(50), Eierkode varchar(50), Variabel varchar(50), År Int, Verdi numeric(18,4))&#xA;&#xA;&#x9;declare @m table(Kommune Varchar(150), Kommunenummer varchar(50), Eierforhold varchar(150), Eierkode varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År Int, År2 Int)&#xA;&#x9;declare @m2 table(Kommune Varchar(150), Kommunenummer varchar(50), Eierforhold varchar(150), Eierkode varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År Int, År2 Int)&#xA;&#xA;&#x9;Insert @t Exec Staging.dbo.SSB_Values_AlleAar @TabellNummer=@TableVar, @Omfang=0&#xA;&#xA;&#x9;Insert @m Exec Staging.dbo.SSB_Metadata @TabellNummer=@TableVar&#xA;&#x9;Insert @m2 Exec Staging.dbo.SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA;&#x9;RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA;&#x9;set noexec on&#xA;end catch&#xA;&#xA;Truncate Table Staging.[dbo].[SSB_12055 Leke- og oppholdsareal, etter eierforhold]&#xA;&#xA;Insert Into Staging.[dbo].[SSB_12055 Leke- og oppholdsareal, etter eierforhold]&#xA;&#xA;Select&#x9;dat.Kommunenummer,&#xA;&#x9;&#x9;dat.Eierkode,&#xA;&#x9;&#x9;met.Eierforhold,&#xA;&#x9;&#x9;dat.Variabel ,&#xA;&#x9;&#x9;met2.Variabelnavn,&#xA;&#x9;&#x9;dat.År, &#xA;&#x9;&#x9;dat.Verdi&#xA;&#xA;from @t dat &#xA;Join @m met On  met.Eierkode = dat.Eierkode&#xA;Join @m2 met2 On met2.Variabel = dat.Variabel&#xA;&#xA;--Leke og oppholdsareal (m2)&#xA;Where dat.Variabel = 'KOSoppholdsareal0000'&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Barnehage\Les SSB_12056 Barn i barnehage, etter alder, eierforhold og oppholdstid"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
-          DTS:Description="Execute SQL Task"
-          DTS:DTSID="{C9093EFA-62DD-4AA6-9641-AC6CFA0C9D0A}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="Les SSB_12056 Barn i barnehage, etter alder, eierforhold og oppholdstid"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="4">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{87175433-C4F6-4E6D-9D6E-61FE32283CE9}"
-              SQLTask:SqlStatementSource="Use [Staging_ASSS]&#xA;&#xA;-- Variabels&#xA;Declare @TableVar varchar(5)&#xA;Declare @TableName varchar(150)&#xA;&#xA;-- Query variabels&#xA;Declare @Truncate_Query nvarchar(200)&#xA;&#xA;Set @TableVar = '12056'&#xA;Set @TableName = (SELECT table_name FROM information_schema.tables WHERE table_name LIKE'SSB_' + @TableVar + '%')&#xA;&#xA;Set @Truncate_Query = N'Truncate Table [' + @TableName + ']'&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA;&#x9;-- Declares&#xA;&#x9;declare @t table(Kommunenummer varchar(50), Alderskode varchar(50), Eierkode varchar(50), Oppholdskode varchar(50), Variabel varchar(50),År Int,Verdi Numeric(18,1))&#xA;&#x9;declare @m table(Kommune Varchar(150),Kommunenummer varchar(50), Aldernavn varchar(50), Alderskode varchar(50), Eiernavn varchar(150), Eierkode varchar(50), &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;Oppholdsnavn varchar(150), Oppholdskode varchar(50), Variabelnavn varchar(150),Variabel varchar(50),År Int, År2 Int)&#xA;&#x9;declare @m2 table(Kommune Varchar(150),Kommunenummer varchar(50), Aldernavn varchar(50), Alderskode varchar(50), Eiernavn varchar(150), Eierkode varchar(50), &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;Oppholdsnavn varchar(150), Oppholdskode varchar(50), Variabelnavn varchar(150),Variabel varchar(50),År Int, År2 Int)&#xA;&#x9;declare @m3 table(Kommune Varchar(150),Kommunenummer varchar(50), Aldernavn varchar(50), Alderskode varchar(50), Eiernavn varchar(150), Eierkode varchar(50), &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;Oppholdsnavn varchar(150), Oppholdskode varchar(50), Variabelnavn varchar(150),Variabel varchar(50),År Int, År2 Int)&#xA;&#x9;declare @m4 table(Kommune Varchar(150),Kommunenummer varchar(50), Aldernavn varchar(50), Alderskode varchar(50), Eiernavn varchar(150), Eierkode varchar(50), &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;Oppholdsnavn varchar(150), Oppholdskode varchar(50), Variabelnavn varchar(150),Variabel varchar(50),År Int, År2 Int)&#xA;&#x9;&#xA;&#x9;-- Inserts&#xA;&#x9;insert @t Exec Staging.dbo.SSB_Values_AlleAar @TabellNummer=@TableVar, @Omfang=0&#xA;&#xA;&#x9;insert @m Exec SSB_Metadata @TabellNummer=@TableVar&#xA;&#x9;insert @m2 Exec SSB_Metadata @TabellNummer=@TableVar&#xA;&#x9;insert @m3 Exec SSB_Metadata @TabellNummer=@TableVar&#xA;&#x9;insert @m4 Exec SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA;&#x9;RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA;&#x9;set noexec on&#xA;end catch&#xA;&#xA;&#xA;-- Executes&#xA;Exec sp_executesql @Truncate_Query&#xA;&#xA;Insert Into [SSB_12056 Barn i barnehage, alder, eierforhold, oppholdstid]&#xA;&#xA;Select dat.Kommunenummer,&#xA;&#x9;dat.Alderskode,&#xA;&#x9;met.Aldernavn,&#xA;&#x9;dat.Eierkode,&#xA;&#x9;met2.Eiernavn,&#xA;&#x9;dat.Oppholdskode,&#xA;&#x9;met3.Oppholdsnavn,&#xA;&#x9;dat.Variabel,&#xA;&#x9;met4.Variabelnavn,&#xA;&#x9;dat.År, &#xA;&#x9;dat.Verdi&#xA;&#xA;from @t dat &#xA;Join @m met ON met.Alderskode = dat.Alderskode&#xA;Join @m2 met2 ON met2.Eierkode = dat.Eierkode&#xA;Join @m3 met3 ON met3.Oppholdskode = dat.Oppholdskode&#xA;Join @m4 met4 ON met4.Variabel = dat.Variabel&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Barnehage\Les SSB_12129 Ansatte i barnehager, etter eierforhold og kjønn"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
-          DTS:Description="Execute SQL Task"
-          DTS:DTSID="{15211D13-1ED9-4579-9730-F1BF54FD1F19}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="Les SSB_12129 Ansatte i barnehager, etter eierforhold og kjønn"
+          DTS:ObjectName="Les SSB_11844 Kapasitet, tilgjengelighet og reiselengde"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
           DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{87175433-C4F6-4E6D-9D6E-61FE32283CE9}"
-              SQLTask:SqlStatementSource="Use [Staging_ASSS]&#xA;&#xA;-- Variabels&#xA;Declare @TableVar varchar(5)&#xA;Declare @TableName varchar(150)&#xA;&#xA;-- Query variabels&#xA;Declare @Truncate_Query nvarchar(200)&#xA;&#xA;Set @TableVar = '12129'&#xA;Set @TableName = (SELECT table_name FROM information_schema.tables WHERE table_name LIKE'SSB_' + @TableVar + '%')&#xA;&#xA;Set @Truncate_Query = N'Truncate Table [' + @TableName + ']'&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA;&#x9;-- Declares&#xA;&#x9;declare @t table(Kommunenummer varchar(50), Eierkode varchar(50), Stillingskode varchar(50), Kjønnskode int, Variabel varchar(50), År Int, Verdi numeric(18,4))&#xA;&#xA;&#x9;declare @m table(Kommune Varchar(150), Kommunenummer varchar(50), Eierforhold varchar(150), Eierkode varchar(50), Stilling varchar(150), Stillingskode varchar(50), Kjønn varchar(50), Kjønnskode int, Variabelnavn varchar(150), Variabel varchar(50), År Int, År2 Int)&#xA;&#x9;declare @m2 table(Kommune Varchar(150), Kommunenummer varchar(50), Eierforhold varchar(150), Eierkode varchar(50), Stilling varchar(150), Stillingskode varchar(50), Kjønn varchar(50), Kjønnskode int, Variabelnavn varchar(150), Variabel varchar(50), År Int, År2 Int)&#xA;&#x9;declare @m3 table(Kommune Varchar(150), Kommunenummer varchar(50), Eierforhold varchar(150), Eierkode varchar(50), Stilling varchar(150), Stillingskode varchar(50), Kjønn varchar(50), Kjønnskode int, Variabelnavn varchar(150), Variabel varchar(50), År Int, År2 Int)&#xA;&#x9;declare @m4 table(Kommune Varchar(150), Kommunenummer varchar(50), Eierforhold varchar(150), Eierkode varchar(50), Stilling varchar(150), Stillingskode varchar(50), Kjønn varchar(50), Kjønnskode int, Variabelnavn varchar(150), Variabel varchar(50), År Int, År2 Int)&#xA;&#x9;&#xA;&#x9;-- Inserts&#xA;&#x9;Insert @t Exec SSB_Values_AlleAar @TabellNummer=@TableVar, @Omfang=0&#xA;&#xA;&#x9;Insert @m Exec SSB_Metadata @TabellNummer=@TableVar&#xA;&#x9;Insert @m2 Exec SSB_Metadata @TabellNummer=@TableVar&#xA;&#x9;Insert @m3 Exec SSB_Metadata @TabellNummer=@TableVar&#xA;&#x9;Insert @m4 Exec SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA;&#x9;RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA;&#x9;set noexec on&#xA;end catch&#xA;&#xA;&#xA;-- Executes&#xA;Exec sp_executesql @Truncate_Query&#xA;&#xA;Insert Into [SSB_12129 Ansatte i barnehager, eierforhold, stillingstype, kjønn]&#xA;&#xA;Select&#x9;dat.Kommunenummer,&#xA;&#x9;&#x9;dat.Eierkode,&#xA;&#x9;&#x9;met.Eierforhold,&#xA;&#x9;&#x9;dat.Stillingskode,&#xA;&#x9;&#x9;met3.Stilling,&#xA;&#x9;&#x9;dat.Kjønnskode,&#xA;&#x9;&#x9;met2.Kjønn,&#xA;&#x9;&#x9;dat.Variabel,&#xA;&#x9;&#x9;met4.Variabelnavn,&#xA;&#x9;&#x9;dat.År, &#xA;&#x9;&#x9;dat.Verdi&#xA; &#xA;from @t dat&#xA;Join @m met ON met.Eierkode = dat.Eierkode&#xA;Join @m2 met2 ON met2.Kjønnskode = dat.Kjønnskode&#xA;Join @m3 met3 ON met3.Stillingskode = dat.Stillingskode&#xA;Join @m4 met4 ON met4.Variabel = dat.Variabel&#xA;&#xA;-- Alle stillingstyper, Styrer, Pedagogisk leder, Annen grunnbemanning &#xA;Where dat.Stillingskode IN ('0','A','B','C')&#xA;-- Begge kjønn&#xA;AND dat.Kjønnskode != '0'&#xA;-- Ansatte (antall)&#xA;AND dat.Variabel = 'KOSansatte0000'&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Barnehage\Les SSB_12216 Barn i barnehage korrigert for alder, og korrigerte oppholdstimer, per årsverk til basisvirksomhet, etter eierforhold"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
-          DTS:Description="Execute SQL Task"
-          DTS:DTSID="{1969F3BC-C79B-46D4-84D3-4353C2605B66}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="Les SSB_12216 Barn i barnehage korrigert for alder, og korrigerte oppholdstimer, per årsverk til basisvirksomhet, etter eierforhold"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="5">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{87175433-C4F6-4E6D-9D6E-61FE32283CE9}"
-              SQLTask:SqlStatementSource="Use [Staging_ASSS]&#xA;&#xA;-- Variabels&#xA;Declare @TableVar varchar(5)&#xA;Declare @TableName varchar(150)&#xA;&#xA;-- Query variabels&#xA;Declare @Truncate_Query nvarchar(200)&#xA;&#xA;Set @TableVar = '12216'&#xA;Set @TableName = (SELECT table_name FROM information_schema.tables WHERE table_name LIKE'SSB_' + @TableVar + '%')&#xA;&#xA;Set @Truncate_Query = N'Truncate Table [' + @TableName + ']'&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA;&#x9;-- Declares&#xA;&#x9;declare @t table(Kommunenummer varchar(50), Eierkode varchar(50),Variabel varchar(50),År Int,Verdi numeric(18,4))&#xA;&#xA;&#x9;declare @m table(Kommune Varchar(150), Kommunenummer varchar(50), Eierforhold varchar(150), Eierkode varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År Int, År2 Int)&#xA;&#x9;declare @m2 table(Kommune Varchar(150), Kommunenummer varchar(50), Eierforhold varchar(150), Eierkode varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År Int, År2 Int)&#xA;&#xA;&#x9;-- Inserts&#xA;&#x9;insert @t Exec SSB_Values_AlleAar @TabellNummer=@TableVar, @Omfang=0&#xA;&#xA;&#x9;insert @m Exec SSB_Metadata @TabellNummer=@TableVar&#xA;&#x9;insert @m2 Exec SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA;&#x9;RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA;&#x9;set noexec on&#xA;end catch&#xA;&#xA;&#xA;-- Executes&#xA;Exec sp_executesql @Truncate_Query&#xA;&#xA;Insert Into [SSB_12216 Barn i barnehage korrigert for alder, og korrigerte oppholdstimer, per årsverk til basisvirksomhet, eierforhold]&#xA;&#xA;Select&#x9;dat.Kommunenummer,&#xA;&#x9;&#x9;dat.Eierkode,&#xA;&#x9;&#x9;met.Eierforhold,&#xA;&#x9;&#x9;dat.Variabel ,&#xA;&#x9;&#x9;met2.Variabelnavn,&#xA;&#x9;&#x9;dat.År, &#xA;&#x9;&#x9;dat.Verdi&#xA;&#xA;from @t dat &#xA;Join @m met On  met.Eierkode = dat.Eierkode&#xA;Join @m2 met2 On met2.Variabel = dat.Variabel&#xA;&#xA;-- Barn i barnehage korrigert for alder (antall), Korrigerte oppholdstimer (timer), Årsverk til basisvirksomhet (årsverk)&#xA;Where dat.Variabel IN ('KOSkorrald0000', 'KOSkorrtid0000', 'KOSbasisaar0000')&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Barnehage\Les SSB_12272 Minoritetsspråklige barn i barnehage"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
-          DTS:Description="Execute SQL Task"
-          DTS:DTSID="{8901A9A6-BEDF-49BE-AC1A-F6D9D22A8CAF}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="Les SSB_12272 Minoritetsspråklige barn i barnehage"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="6">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{87175433-C4F6-4E6D-9D6E-61FE32283CE9}"
-              SQLTask:SqlStatementSource="Use [Staging_ASSS]&#xA;&#xA;-- Variabels&#xA;Declare @TableVar varchar(5)&#xA;Declare @TableName varchar(150)&#xA;&#xA;-- Query variabels&#xA;Declare @Truncate_Query nvarchar(200)&#xA;&#xA;Set @TableVar = '12272'&#xA;Set @TableName = (SELECT table_name FROM information_schema.tables WHERE table_name LIKE'SSB_' + @TableVar + '%')&#xA;&#xA;Set @Truncate_Query = N'Truncate Table [' + @TableName + ']'&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA;&#x9;-- Declares&#xA;&#x9;declare @t table(Kommunenummer varchar(50), Variabel varchar(50),År Int,Verdi numeric(18,4))&#xA;&#x9;declare @m table(Kommune Varchar(150), Kommunenummer varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År Int, År2 Int)&#xA;&#x9;&#xA;&#x9;-- Inserts&#xA;&#x9;insert @t Exec SSB_Values_AlleAar @TabellNummer=@TableVar, @Omfang=0&#xA;&#x9;insert @m Exec SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA;&#x9;RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA;&#x9;set noexec on&#xA;end catch&#xA;&#xA;&#xA;-- Executes&#xA;Exec sp_executesql @Truncate_Query&#xA;&#xA;Insert Into [SSB_12272 Minoritetsspråklige barn i barnehage 1-5 år]&#xA;&#xA;Select dat.Kommunenummer,&#xA;  dat.Variabel ,&#xA;  met.Variabelnavn,&#xA;  dat.År, &#xA;  dat.Verdi&#xA; &#xA;from @t dat &#xA;Join @m met&#xA;On met.Variabel = dat.Variabel&#xA;&#xA;-- Barn i barnehage (antall), Minoritetsspråklige barn (antall), Innvandrerbarn (antall)&#xA;Where dat.Variabel IN ('KOSbarn0000', 'KOSminspbhgbarn0000', 'KOSinnvbef150000')&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Barnehage\Les SSB_12376 Barn som får ekstra ressurser"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
-          DTS:Description="Execute SQL Task"
-          DTS:DTSID="{8d6ad0ae-d22c-47ad-aa02-62fffabed4ea}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="Les SSB_12376 Barn som får ekstra ressurser"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="7">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{87175433-C4F6-4E6D-9D6E-61FE32283CE9}"
-              SQLTask:SqlStatementSource="-- Tabellnummer&#xA;Declare @TableVar varchar(5)&#xA;&#x9;Set @TableVar = '12376'&#xA;&#xA;&#xA;begin try&#xA;&#x9;-- Declares&#xA;&#x9;declare @t table(Kommunenummer varchar(50), Variabel varchar(50), År Int, Verdi numeric(18,4))&#xA;&#x9;declare @m table(Kommune Varchar(150), Kommunenummer varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År Int, År2 Int)&#xA;&#xA;&#x9;-- Inserts&#xA;&#x9;Insert @t Exec Staging.dbo.SSB_Values_AlleAar @TabellNummer=@TableVar, @Omfang=0&#xA;&#x9;Insert @m Exec Staging.dbo.SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA;&#x9;RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA;&#x9;set noexec on&#xA;end catch&#xA;&#xA;Truncate Table Staging.[dbo].[SSB_12376 Barn som får ekstra ressurser]&#xA;&#xA;Insert Into Staging.[dbo].[SSB_12376 Barn som får ekstra ressurser]&#xA;&#xA;Select&#x9;dat.Kommunenummer,&#xA;&#x9;&#x9;dat.Variabel,&#xA;&#x9;&#x9;met.Variabelnavn,&#xA;&#x9;&#x9;dat.År, &#xA;&#x9;&#x9;dat.Verdi&#xA; &#xA;from @t dat &#xA;Join @m met On  met.Variabel = dat.Variabel&#xA;&#xA;-- Barn som får ekstra ressurser til styrket tilbud til førskolebarn, alle barnehager (antall)&#xA;Where met.Variabel = 'KOSbarnekstraall0000'&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Barnehage\Les SSB_12380 Fordeling av finansiering for kommunale plasser, art"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
-          DTS:Description="Execute SQL Task"
-          DTS:DTSID="{4560f1e5-66e6-489d-9edf-aad3c5da59f5}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="Les SSB_12380 Fordeling av finansiering for kommunale plasser, art"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="9">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{87175433-C4F6-4E6D-9D6E-61FE32283CE9}"
-              SQLTask:SqlStatementSource="-- Tabellnummer&#xA;Declare @TableVar varchar(5)&#xA;&#x9;Set @TableVar = '12380'&#xA;&#xA;&#xA;begin try&#xA;&#x9;-- Declares&#xA;&#x9;declare @t table(Kommunenummer varchar(50), Art varchar(50), Variabel varchar(50), År Int, Verdi numeric(18,4))&#xA;&#x9;declare @m table(Kommune Varchar(150), Kommunenummer varchar(50), Artsnavn varchar(150), Art varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År Int, År2 Int)&#xA;&#x9;declare @m2 table(Kommune Varchar(150), Kommunenummer varchar(50), Artsnavn varchar(150), Art varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År Int, År2 Int)&#xA;&#xA;&#x9;-- Inserts&#xA;&#x9;Insert @t Exec Staging.dbo.SSB_Values_AlleAar @TabellNummer=@TableVar, @Omfang=0&#xA;&#x9;Insert @m Exec Staging.dbo.SSB_Metadata @TabellNummer=@TableVar&#xA;&#x9;Insert @m2 Exec Staging.dbo.SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA;&#x9;RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA;&#x9;set noexec on&#xA;end catch&#xA;&#xA;Truncate Table Staging.[dbo].[SSB_12380 Fordeling av finansiering for kommunale plasser, art]&#xA;&#xA;Insert Into Staging.[dbo].[SSB_12380 Fordeling av finansiering for kommunale plasser, art]&#xA;&#xA;Select&#x9;dat.Kommunenummer,&#xA;&#x9;&#x9;dat.Art,&#xA;&#x9;&#x9;met2.Artsnavn,&#xA;&#x9;&#x9;dat.Variabel ,&#xA;&#x9;&#x9;met.Variabelnavn,&#xA;&#x9;&#x9;dat.År, &#xA;&#x9;&#x9;dat.Verdi&#xA; &#xA;&#xA;from @t dat &#xA;Join @m met ON dat.Variabel = met.Variabel&#xA;Join @m2 met2 ON dat.Art = met2.Art&#xA;&#xA;-- Beløp (1000 kr)&#xA;Where dat.Variabel = 'KOSbelop0000'&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Barnehage\Les SSB_12436 Årsverk, eierforhold, stillingstype, utdanning"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
-          DTS:Description="Execute SQL Task"
-          DTS:DTSID="{7d0cd94f-a0e9-4c3c-bba3-c9087266621e}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="Les SSB_12436 Årsverk, eierforhold, stillingstype, utdanning"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="8">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{87175433-C4F6-4E6D-9D6E-61FE32283CE9}"
-              SQLTask:SqlStatementSource="Use [Staging_ASSS]&#xA;&#xA;-- Variabels&#xA;Declare @TableVar varchar(5)&#xA;Declare @TableName varchar(150)&#xA;&#xA;-- Query variabels&#xA;Declare @Truncate_Query nvarchar(200)&#xA;&#xA;Set @TableVar = '12436'&#xA;Set @TableName = (SELECT table_name FROM information_schema.tables WHERE table_name LIKE'SSB_' + @TableVar + '%')&#xA;&#xA;Set @Truncate_Query = N'Truncate Table [' + @TableName + ']'&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA;&#x9;-- Declares&#xA;&#x9;declare @t table(Kommunenummer varchar(50), Eierkode varchar(50), Stillingskode varchar(50), Utdanningskode varchar(50), Variabel varchar(50), År Int, Verdi numeric(18,4))&#xA;&#xA;&#x9;declare @m table(Kommune Varchar(150), Kommunenummer varchar(50), Eierforhold varchar(150), Eierkode varchar(50), Stillingsnavn varchar(150), Stillingskode varchar(50),  Utdanningsnavn varchar(150), Utdanningskode varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År Int, År2 Int)&#xA;&#x9;declare @m2 table(Kommune Varchar(150), Kommunenummer varchar(50), Eierforhold varchar(150), Eierkode varchar(50), Stillingsnavn varchar(150), Stillingskode varchar(50),  Utdanningsnavn varchar(150), Utdanningskode varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År Int, År2 Int)&#xA;&#x9;declare @m3 table(Kommune Varchar(150), Kommunenummer varchar(50), Eierforhold varchar(150), Eierkode varchar(50), Stillingsnavn varchar(150), Stillingskode varchar(50),  Utdanningsnavn varchar(150), Utdanningskode varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År Int, År2 Int)&#xA;&#x9;declare @m4 table(Kommune Varchar(150), Kommunenummer varchar(50), Eierforhold varchar(150), Eierkode varchar(50), Stillingsnavn varchar(150), Stillingskode varchar(50),  Utdanningsnavn varchar(150), Utdanningskode varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År Int, År2 Int)&#xA;&#xA;&#x9;-- Inserts&#xA;&#x9;insert @t Exec Staging.dbo.SSB_Values_AlleAar @TabellNummer=@TableVar, @Omfang=0&#xA;&#xA;&#x9;insert @m Exec Staging.dbo.SSB_Metadata @TabellNummer=@TableVar&#xA;&#x9;insert @m2 Exec Staging.dbo.SSB_Metadata @TabellNummer=@TableVar&#xA;&#x9;insert @m3 Exec Staging.dbo.SSB_Metadata @TabellNummer=@TableVar&#xA;&#x9;insert @m4 Exec Staging.dbo.SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA;&#x9;RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA;&#x9;set noexec on&#xA;end catch&#xA;&#xA;&#xA;-- Executes&#xA;Exec sp_executesql @Truncate_Query&#xA;&#xA;Insert Into [SSB_12436 Årsverk, eierforhold, stillingstype, utdanning]&#xA;&#xA;Select&#x9;dat.Kommunenummer,&#xA;&#x9;&#x9;dat.Eierkode,&#xA;&#x9;&#x9;met.Eierforhold,&#xA;&#x9;&#x9;dat.Stillingskode,&#xA;&#x9;&#x9;met3.Stillingsnavn,&#xA;&#x9;&#x9;dat.Utdanningskode,&#xA;&#x9;&#x9;met2.Utdanningsnavn,&#xA;&#x9;&#x9;dat.Variabel,&#xA;&#x9;&#x9;met4.Variabelnavn,&#xA;&#x9;&#x9;dat.År, &#xA;&#x9;&#x9;dat.Verdi&#xA; &#xA;from @t dat &#xA;Join @m met On  met.Eierkode = dat.Eierkode&#xA;Join @m2 met2 On met2.Utdanningskode = dat.Utdanningskode&#xA;Join @m3 met3 On met3.Stillingskode = dat.Stillingskode&#xA;Join @m4 met4 On met4.Variabel = dat.Variabel&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Barnehage\Les SSB_12562 Utvalgte nøkkeltal for barnehager"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
-          DTS:Description="Execute SQL Task"
-          DTS:DTSID="{B2AF57F7-6FF2-4FCD-81E0-9BD4CD0603C7}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="Les SSB_12562 Utvalgte nøkkeltal for barnehager"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="10">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{87175433-C4F6-4E6D-9D6E-61FE32283CE9}"
-              SQLTask:SqlStatementSource="Use [Staging_ASSS]&#xA;&#xA;-- Variabels&#xA;Declare @TableVar varchar(5)&#xA;Declare @TableName varchar(150)&#xA;&#xA;-- Query variabels&#xA;Declare @Truncate_Query nvarchar(200)&#xA;&#xA;Set @TableVar = '12562'&#xA;Set @TableName = (SELECT table_name FROM information_schema.tables WHERE table_name LIKE'SSB_' + @TableVar + '%')&#xA;&#xA;Set @Truncate_Query = N'Truncate Table [' + @TableName + ']'&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA;&#x9;-- Declares&#xA;&#x9;declare @t Table(Kommunenummer varchar(50), Variabel varchar(50), År Int, Verdi numeric(18,4))&#xA;&#x9;declare @m Table(Kommune varchar(150), Kommunenummer varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År int, År2 int)&#xA;&#xA;&#x9;-- Inserts&#xA;&#x9;insert @t Exec SSB_Values_AlleAar @TabellNummer=@TableVar, @Omfang=0&#xA;&#x9;insert @m Exec SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA;&#x9;RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA;&#x9;set noexec on&#xA;end catch&#xA;&#xA;&#xA;-- Executes&#xA;Exec sp_executesql @Truncate_Query&#xA;&#xA;Insert Into [SSB_12562 Utvalgte nøkkeltal  for barnehager]&#xA;&#xA;Select&#x9;dat.Kommunenummer,&#xA;&#x9;&#x9;dat.Variabel ,&#xA;&#x9;&#x9;met.Variabelnavn,&#xA;&#x9;&#x9;dat.År, &#xA;&#x9;&#x9;dat.Verdi&#xA; &#xA;from @t dat&#xA;Join @m met&#xA;ON dat.Variabel = met.Variabel&#xA;&#xA;-- Antall barn korrigert for alder per årsverk til basisvirksomhet i barnehage, alle barnehager (antall)&#xA;-- Andel barnehagelærere i forhold til grunnbemanning (prosent)&#xA;-- Andel barn, eksklusive minoritetsspråklige, som får ekstra ressurser, i forhold til alle barn i kommunale barnehager (prosent)&#xA;-- Korrigerte brutto driftsutgifter til barnehager (f201, f211, f221) per korrigerte oppholdstimer i kommunale barnehager (kr)&#xA;Where dat.Variabel IN ('KOSbarnaav0000', 'KOSbhglgrunnb0000', 'KOSekstrakomm0000', 'KOSkorrtidkomm0000')&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="Use [Staging_Status]&#xA;&#xA;-- Variabels&#xA;Declare @TableVar varchar(5)&#xA;Declare @TableName varchar(150)&#xA;&#xA;-- Query variabels&#xA;Declare @Truncate_Query nvarchar(200)&#xA;&#xA;Set @TableVar = '11844'&#xA;Set @TableName = (SELECT table_name FROM information_schema.tables WHERE table_name LIKE'SSB_' + @TableVar + '%')&#xA;&#xA;Set @Truncate_Query = N'Truncate Table [' + @TableName + ']'&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA;&#x9;-- Declares&#xA;&#x9;declare @t table(Kommunenummer varchar(50), Variabel varchar(50), År Int, Verdi Numeric(18,4))&#xA;&#xA;&#x9;declare @m table(Kommunenavn varchar(150), Kommunenummer varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År Int, År2 Int)&#xA;&#x9;&#xA;&#x9;-- Inserts&#xA;&#x9;insert @t Exec SSB_Values_AlleAar @TabellNummer=@TableVar&#xA;&#x9;insert @m Exec SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA;&#x9;RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA;&#x9;set noexec on&#xA;end catch&#xA;&#xA;&#xA;-- Executes&#xA;Exec sp_executesql @Truncate_Query&#xA;&#xA;Insert Into [SSB_11844 Kapasitet, tilgjengelighet og reiselengde]&#xA;&#xA;Select dat.Kommunenummer,&#xA;&#x9;dat.Variabel,&#xA;&#x9;met.Variabelnavn,&#xA;&#x9;dat.År, &#xA;&#x9;dat.Verdi&#xA;&#xA;from @t dat&#xA;Join @m met ON met.Variabel = dat.Variabel&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -229,58 +59,18 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
         <NodeLayout
           Size="261.333333333334,42"
-          Id="Package\Barnehage\Les SSB_09345 Ansatte i barnehager, eierforhold, utdanning"
+          Id="Package\Klima og Miljøvennlig Utvikling\Les SSB_11844 Kapasitet, tilgjengelighet og reiselengde"
           TopLeft="73.9605654772253,68.2842712772273" />
-        <NodeLayout
-          Size="252,42"
-          Id="Package\Barnehage\Les SSB_12054 Barnehager, etter eierforhold"
-          TopLeft="78.4605654772253,125.643145725737" />
-        <NodeLayout
-          Size="346.666666666667,42"
-          Id="Package\Barnehage\Les SSB_12055 Leke- og oppholdsareal, etter eierforhold"
-          TopLeft="30.9605654772253,181.76392495829" />
-        <NodeLayout
-          Size="362.666666666667,42"
-          Id="Package\Barnehage\Les SSB_12056 Barn i barnehage, etter alder, eierforhold og oppholdstid"
-          TopLeft="22.9605654772253,238.503751798821" />
-        <NodeLayout
-          Size="276,42"
-          Id="Package\Barnehage\Les SSB_12129 Ansatte i barnehager, etter eierforhold og kjønn"
-          TopLeft="66.4605654772253,295.243578639352" />
-        <NodeLayout
-          Size="325.333333333334,50.6666666666667"
-          Id="Package\Barnehage\Les SSB_12216 Barn i barnehage korrigert for alder, og korrigerte oppholdstimer, per årsverk til basisvirksomhet, etter eierforhold"
-          TopLeft="41.9605654772253,352.416738805469" />
-        <NodeLayout
-          Size="261.333333333334,42"
-          Id="Package\Barnehage\Les SSB_12272 Minoritetsspråklige barn i barnehage"
-          TopLeft="73.9605654772253,417.723232320415" />
-        <NodeLayout
-          Size="261.333333333334,42"
-          Id="Package\Barnehage\Les SSB_12376 Barn som får ekstra ressurser"
-          TopLeft="73.9605654772253,474.463059160946" />
-        <NodeLayout
-          Size="261.333333333334,42"
-          Id="Package\Barnehage\Les SSB_12380 Fordeling av finansiering for kommunale plasser, art"
-          TopLeft="73.9605654772253,531.202886001478" />
-        <NodeLayout
-          Size="261.333333333334,60"
-          Id="Package\Barnehage\Les SSB_12436 Årsverk, eierforhold, stillingstype, utdanning"
-          TopLeft="73.9605654772253,587.942712842009" />
-        <NodeLayout
-          Size="261.333333333334,42"
-          Id="Package\Barnehage\Les SSB_12562 Utvalgte nøkkeltal for barnehager"
-          TopLeft="73.9605654772253,662.68253968254" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
           PanelSize="445.333333333334,814.666666666667"
-          Size="445.333333333334,858"
-          Id="Package\Barnehage"
-          TopLeft="286.82936351474,42.22618884898" />
+          Size="445.333333333334,857.333333333334"
+          Id="Package\Klima og Miljøvennlig Utvikling"
+          TopLeft="286.412696854282,42.22618884898" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
