@@ -1,0 +1,246 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/10/2019 12:06:08 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="UTLAAN17-X1G3"
+  DTS:CreatorName="KSINT\8093AHA"
+  DTS:DTSID="{8274D631-4B6E-4FF4-BBAD-E71E9CE2921C}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3026.27"
+  DTS:LocaleID="1044"
+  DTS:ObjectName="SSB Befolkning og demografi"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="45"
+  DTS:VersionGUID="{CDC23F9E-87DC-43EB-AAD7-4BC5BC35BAE2}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Befolkning og demografi"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{DA82ED62-8436-41F3-BC63-61309B0787CC}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Befolkning og demografi">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Befolkning og demografi\Les SSB_05212 Folkemengde, kjønn, tettbygd spredtbygd strøk"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{F4192711-7504-4B7C-8DD4-35CA53129976}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Les SSB_05212 Folkemengde, kjønn, tettbygd spredtbygd strøk"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="4">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CE753D13-4665-45DC-B920-B89FDD5F054C}"
+              SQLTask:SqlStatementSource="-- Variabels&#xA;Declare @TableVar varchar(5)&#xA;Declare @TableName varchar(150)&#xA;&#xA;-- Query variabels&#xA;Declare @Truncate_Query nvarchar(200)&#xA;&#xA;Set @TableVar = '05212'&#xA;Set @TableName = (SELECT table_name FROM Staging_Kart.information_schema.tables WHERE table_name LIKE'SSB_' + @TableVar + '%')&#xA;&#xA;Set @Truncate_Query = N'Truncate Table Staging_Kart.[dbo].[' + @TableName + ']'&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA; -- Declares&#xA; Declare @t Table(Kommunenummer varchar(50), Strøkkode varchar(50), Kjønnkode varchar(50), Variabel varchar(50), År varchar(50), Verdi numeric(18,4))&#xA; Declare @m Table(Kommune varchar(150), Kommunenummer varchar(50), Strøknavn varchar(150), Strøkkode varchar(50), Kjønnnavn varchar(150), Kjønnkode varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År varchar(50), År2 varchar(50))&#xA; Declare @m2 Table(Kommune varchar(150), Kommunenummer varchar(50), Strøknavn varchar(150), Strøkkode varchar(50), Kjønnnavn varchar(150), Kjønnkode varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År varchar(50), År2 varchar(50))&#xA; Declare @m3 Table(Kommune varchar(150), Kommunenummer varchar(50), Strøknavn varchar(150), Strøkkode varchar(50), Kjønnnavn varchar(150), Kjønnkode varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År varchar(50), År2 varchar(50))&#xA;&#xA; -- Inserts&#xA; Insert @t Exec Staging_Kart.dbo.SSB_Values_AlleAar @TabellNummer=@TableVar, @Omfang=0&#xA; Insert @m Exec Staging_Kart.dbo.SSB_Metadata @TabellNummer=@TableVar&#xA; Insert @m2 Exec Staging_Kart.dbo.SSB_Metadata @TabellNummer=@TableVar&#xA; Insert @m3 Exec Staging_Kart.dbo.SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA; RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA; set noexec on&#xA;end catch&#xA;&#xA;&#xA;-- Executes&#xA;Exec sp_executesql @Truncate_Query&#xA;&#xA;Insert Into Staging_Kart.dbo.[SSB_05212 Folkemengde, kjønn, tettbygd/spredtbygd strøk]&#xA;&#xA;Select dat.Kommunenummer,&#xA;&#x9;dat.Strøkkode,&#xA;&#x9;met2.Strøknavn,&#xA;&#x9;dat.Kjønnkode,&#xA;&#x9;met3.Kjønnnavn,&#xA;&#x9;[Variabel] = dat.Variabel + Cast([Staging].[dbo].checksum_int('SSB_05212 Folkemengde, kjønn, tettbygd/spredtbygd strøk') As varchar),&#xA;&#x9;met.Variabelnavn,&#xA;&#x9;dat.År, &#xA;&#x9;dat.Verdi&#xA; &#xA;from @t dat&#xA;Join @m met ON met.Variabel = dat.Variabel&#xA;Join @m2 met2 ON met2.Strøkkode = dat.Strøkkode&#xA;Join @m3 met3 ON met3.Kjønnkode = dat.Kjønnkode  &#xA;&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Befolkning og demografi\Les SSB_06096 Personer 18 år og over i privathusholdninger (prosent), samlivsform"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{84636BC1-0E36-43E1-9AD9-37FB79B3D239}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Les SSB_06096 Personer 18 år og over i privathusholdninger (prosent), samlivsform"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="3">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CE753D13-4665-45DC-B920-B89FDD5F054C}"
+              SQLTask:SqlStatementSource="-- Variabels&#xA;Declare @TableVar varchar(5)&#xA;Declare @TableName varchar(150)&#xA;&#xA;-- Query variabels&#xA;Declare @Truncate_Query nvarchar(200)&#xA;&#xA;Set @TableVar = '06096'&#xA;Set @TableName = (SELECT table_name FROM Staging_Kart.information_schema.tables WHERE table_name LIKE'SSB_' + @TableVar + '%')&#xA;&#xA;Set @Truncate_Query = N'Truncate Table Staging_Kart.[dbo].[' + @TableName + ']'&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA;&#x9;-- Declares&#xA;&#x9;Declare @t Table(Kommunenummer varchar(50), Samlivsformkode varchar(50), Variabel varchar(50), År Int, Verdi numeric(18,4))&#xA;&#x9;Declare @m Table(Kommune varchar(150), Kommunenummer varchar(50), Samlivsformnavn varchar(150), Samlivsformkode varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År int, År2 int)&#xA;&#x9;Declare @m2 Table(Kommune varchar(150), Kommunenummer varchar(50), Samlivsformnavn varchar(150), Samlivsformkode varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År int, År2 int)&#xA;&#x9;&#xA;&#x9;-- Inserts&#xA;&#x9;Insert @t Exec Staging_Kart.dbo.SSB_Values_AlleAar @TabellNummer=@TableVar, @Omfang=0&#xA;&#x9;Insert @m Exec Staging_Kart.dbo.SSB_Metadata @TabellNummer=@TableVar&#xA;&#x9;Insert @m2 Exec Staging_Kart.dbo.SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA;&#x9;RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA;&#x9;set noexec on&#xA;end catch&#xA;&#xA;&#xA;-- Executes&#xA;Exec sp_executesql @Truncate_Query&#xA;&#xA;Insert Into Staging_Kart.dbo.[SSB_06096 Personer 18 år og over i privathusholdninger (prosent), samlivsform]&#xA;&#xA;Select&#x9;dat.Kommunenummer,&#xA;&#x9;&#x9;dat.Samlivsformkode,&#xA;&#x9;&#x9;met.Samlivsformnavn,&#xA;&#x9;&#x9;[Variabel] = dat.Variabel + Cast([Staging].dbo.checksum_int('SSB_06096 Personer 18 år og over i privathusholdninger (prosent), samlivsform') AS Varchar),&#xA;&#x9;&#x9;met2.Variabelnavn,&#xA;&#x9;&#x9;dat.År, &#xA;&#x9;&#x9;dat.Verdi&#xA; &#xA;from @t dat&#xA;Join @m  met ON met.Samlivsformkode = dat.Samlivsformkode&#xA;Join @m2 met2 ON met2.Variabel = dat.Variabel&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Befolkning og demografi\Les SSB_07459 Befolkning, kjønn, alder"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{54059FE7-862E-4611-ABF6-FDB365DEEA70}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Les SSB_07459 Befolkning, kjønn, alder"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CE753D13-4665-45DC-B920-B89FDD5F054C}"
+              SQLTask:SqlStatementSource="-- Variabels&#xA;Declare @TableVar varchar(5)&#xA;Declare @TableName varchar(150)&#xA;&#xA;-- Query variabels&#xA;Declare @Truncate_Query nvarchar(200)&#xA;&#xA;Set @TableVar = '07459'&#xA;Set @TableName = (SELECT table_name FROM Staging_Kart.information_schema.tables WHERE table_name LIKE'SSB_' + @TableVar + '%')&#xA;&#xA;Set @Truncate_Query = N'Truncate Table Staging_Kart.[dbo].[' + @TableName + ']'&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA;&#x9;-- Declares&#xA;&#x9;Declare @t Table(Kommunenummer varchar(50), Kjønnskode varchar(50), Alderskode varchar(50), Variabel varchar(50), År Int, Verdi numeric(18,4))&#xA;&#x9;Declare @m Table(Kommune varchar(150), Kommunenummer varchar(50), Kjønnsnavn varchar(150), Kjønnskode varchar(50), Aldersnavn varchar(150), Alderskode varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År int, År2 int)&#xA;&#x9;Declare @m2 Table(Kommune varchar(150), Kommunenummer varchar(50), Kjønnsnavn varchar(150), Kjønnskode varchar(50), Aldersnavn varchar(150), Alderskode varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År int, År2 int)&#xA;&#x9;Declare @m3 Table(Kommune varchar(150), Kommunenummer varchar(50), Kjønnsnavn varchar(150), Kjønnskode varchar(50), Aldersnavn varchar(150), Alderskode varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År int, År2 int)&#xA;&#x9;&#xA;&#x9;-- Inserts&#xA;&#x9;Insert @t Exec Staging_Kart.dbo.SSB_Values_AlleAar @TabellNummer=@TableVar, @Omfang=0&#xA;&#x9;Insert @m Exec Staging_Kart.dbo.SSB_Metadata @TabellNummer=@TableVar&#xA;&#x9;Insert @m2 Exec Staging_Kart.dbo.SSB_Metadata @TabellNummer=@TableVar&#xA;&#x9;Insert @m3 Exec Staging_Kart.dbo.SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA;&#x9;RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA;&#x9;set noexec on&#xA;end catch&#xA;&#xA;&#xA;-- Executes&#xA;Exec sp_executesql @Truncate_Query&#xA;&#xA;Insert Into Staging_Kart.dbo.[SSB_07459 Befolkning, kjønn, alder]&#xA;&#xA;Select&#x9;dat.Kommunenummer,&#xA;&#x9;&#x9;dat.Kjønnskode,&#xA;&#x9;&#x9;met.Kjønnsnavn,&#xA;&#x9;&#x9;dat.Alderskode,&#xA;&#x9;&#x9;met2.Aldersnavn,&#xA;&#x9;&#x9;dat.Variabel,&#xA;&#x9;&#x9;met3.Variabelnavn,&#xA;&#x9;&#x9;dat.År, &#xA;&#x9;&#x9;dat.Verdi&#xA; &#xA;from @t dat&#xA;Join @m  met ON met.Kjønnskode = dat.Kjønnskode&#xA;Join @m2 met2 ON met2.Alderskode = dat.Alderskode&#xA;Join @m3 met3 ON met3.Variabel = dat.Variabel&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Befolkning og demografi\Les SSB_08531 Medlemmer i trus- og livssynssamfunn som mottek offentleg stønad og er utanfor DNK, religion livssyn"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{9C7C2664-7F31-46A6-B412-F85EF8D6C4ED}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Les SSB_08531 Medlemmer i trus- og livssynssamfunn som mottek offentleg stønad og er utanfor DNK, religion livssyn"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="2">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CE753D13-4665-45DC-B920-B89FDD5F054C}"
+              SQLTask:SqlStatementSource="-- Variabels&#xA;Declare @TableVar varchar(5)&#xA;Declare @TableName varchar(150)&#xA;&#xA;-- Query variabels&#xA;Declare @Truncate_Query nvarchar(200)&#xA;&#xA;Set @TableVar = '08531'&#xA;Set @TableName = (SELECT table_name FROM Staging_Kart.information_schema.tables WHERE table_name LIKE'SSB_' + @TableVar + '%')&#xA;&#xA;Set @Truncate_Query = N'Truncate Table Staging_Kart.[dbo].[' + @TableName + ']'&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA; -- Declares&#xA; Declare @t Table(Kommunenummer varchar(50), Religionkode varchar(50), Variabel varchar(50), År varchar(50), Verdi numeric(18,4))&#xA; Declare @m Table(Kommune varchar(150), Kommunenummer varchar(50), Relgionnavn varchar(150), Religionkode varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År varchar(50), År2 varchar(50))&#xA; Declare @m2 Table(Kommune varchar(150), Kommunenummer varchar(50), Relgionnavn varchar(150), Religionkode varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År varchar(50), År2 varchar(50))&#xA;&#xA; -- Inserts&#xA; Insert @t Exec Staging_Kart.dbo.SSB_Values_AlleAar @TabellNummer=@TableVar, @Omfang=0&#xA; Insert @m Exec Staging_Kart.dbo.SSB_Metadata @TabellNummer=@TableVar&#xA; Insert @m2 Exec Staging_Kart.dbo.SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA; RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA; set noexec on&#xA;end catch&#xA;&#xA;&#xA;-- Executes&#xA;Exec sp_executesql @Truncate_Query&#xA;&#xA;Insert Into Staging_Kart.dbo.[SSB_08531 Medlemmer i trus- og livssynssamfunn som mottek offentleg stønad og er utanfor DNK, religion/livssyn]&#xA;&#xA;Select dat.Kommunenummer,&#xA;&#x9;dat.Religionkode,&#xA;&#x9;met2.Relgionnavn,&#xA;&#x9;dat.Variabel,&#xA;&#x9;met.Variabelnavn,&#xA;&#x9;dat.År, &#xA;&#x9;dat.Verdi&#xA; &#xA;from @t dat&#xA;Join @m met ON met.Variabel = dat.Variabel&#xA;Join @m2 met2 ON met2.Religionkode = dat.Religionkode&#xA;&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Befolkning og demografi\Les SSB_09588 Flytting"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{BF89F27A-A011-491E-8E45-7BB7415A3EC9}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Les SSB_09588 Flytting"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CE753D13-4665-45DC-B920-B89FDD5F054C}"
+              SQLTask:SqlStatementSource="-- Variabels&#xA;Declare @TableVar varchar(5)&#xA;Declare @TableName varchar(150)&#xA;&#xA;-- Query variabels&#xA;Declare @Truncate_Query nvarchar(200)&#xA;&#xA;Set @TableVar = '09588'&#xA;Set @TableName = (SELECT table_name FROM Staging_Kart.information_schema.tables WHERE table_name LIKE'SSB_' + @TableVar + '%')&#xA;&#xA;Set @Truncate_Query = N'Truncate Table Staging_Kart.[dbo].[' + @TableName + ']'&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA;&#x9;-- Declares&#xA;&#x9;Declare @t Table(Kommunenummer varchar(50), Variabel varchar(50), År Int, Verdi numeric(18,4))&#xA;&#x9;Declare @m Table(Kommune varchar(150), Kommunenummer varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År int, År2 int)&#xA;&#x9;&#xA;&#x9;-- Inserts&#xA;&#x9;Insert @t Exec Staging_Kart.dbo.SSB_Values_AlleAar @TabellNummer=@TableVar, @Omfang=0&#xA;&#x9;Insert @m Exec Staging_Kart.dbo.SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA;&#x9;RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA;&#x9;set noexec on&#xA;end catch&#xA;&#xA;&#xA;-- Executes&#xA;Exec sp_executesql @Truncate_Query&#xA;&#xA;Insert Into Staging_Kart.dbo.[SSB_09588 Flytting]&#xA;&#xA;Select&#x9;dat.Kommunenummer,&#xA;&#x9;&#x9;dat.Variabel,&#xA;&#x9;&#x9;met.Variabelnavn,&#xA;&#x9;&#x9;dat.År, &#xA;&#x9;&#x9;dat.Verdi&#xA; &#xA;from @t dat&#xA;Join @m met ON met.Variabel = dat.Variabel&#xA;&#xA;-- Nettoinnflytting&#xA;Where dat.Variabel = 'Netto'&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Befolkning og demografi\Les SSB_09747 Privathusholdninger"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{352B731C-C92F-4E9C-B01B-ADFAABD5B4C0}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Les SSB_09747 Privathusholdninger"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="5">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CE753D13-4665-45DC-B920-B89FDD5F054C}"
+              SQLTask:SqlStatementSource="-- Variabels&#xA;Declare @TableVar varchar(5)&#xA;Declare @TableName varchar(150)&#xA;&#xA;-- Query variabels&#xA;Declare @Truncate_Query nvarchar(200)&#xA;&#xA;Set @TableVar = '09747'&#xA;Set @TableName = (SELECT table_name FROM Staging_Kart.information_schema.tables WHERE table_name LIKE'SSB_' + @TableVar + '%')&#xA;&#xA;Set @Truncate_Query = N'Truncate Table Staging_Kart.[dbo].[' + @TableName + ']'&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA;&#x9;-- Declares&#xA;&#x9;Declare @t Table(Kommunenummer varchar(50), Variabel varchar(50), År Int, Verdi numeric(18,4))&#xA;&#x9;Declare @m Table(Kommune varchar(150), Kommunenummer varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År int, År2 int)&#xA;&#x9;&#xA;&#x9;-- Inserts&#xA;&#x9;Insert @t Exec Staging_Kart.dbo.SSB_Values_AlleAar @TabellNummer=@TableVar, @Omfang=0&#xA;&#x9;Insert @m Exec Staging_Kart.dbo.SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA;&#x9;RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA;&#x9;set noexec on&#xA;end catch&#xA;&#xA;&#xA;-- Executes&#xA;Exec sp_executesql @Truncate_Query&#xA;&#xA;Insert Into Staging_Kart.dbo.[SSB_09747 Privathusholdninger]&#xA;&#xA;Select&#x9;dat.Kommunenummer,&#xA;&#x9;&#x9;dat.Variabel,&#xA;&#x9;&#x9;met.Variabelnavn,&#xA;&#x9;&#x9;dat.År, &#xA;&#x9;&#x9;dat.Verdi&#xA; &#xA;from @t dat&#xA;Join @m met ON met.Variabel = dat.Variabel&#xA;&#xA;-- Privathusholdninger&#xA;-- Personer i privathusholdninger&#xA;Where dat.Variabel IN ( 'Husholdniger', 'Personer')&#xA;-- We do not want bydeler &#xA;AND dat.Kommunenummer NOT LIKE('[0-9][0-9][0-9][0-9][0-9]%')&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Befolkning og demografi\Les SSB_09817 Innvandrere og norskfødte med innvandrerforeldre, innvandringskategori, landbakgrunn"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{23668FAB-D7DB-4215-9AB3-19DC5939F5DE}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Les SSB_09817 Innvandrere og norskfødte med innvandrerforeldre, innvandringskategori, landbakgrunn"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="6">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CE753D13-4665-45DC-B920-B89FDD5F054C}"
+              SQLTask:SqlStatementSource="-- Variabels&#xA;Declare @TableVar varchar(5)&#xA;Declare @TableName varchar(150)&#xA;&#xA;-- Query variabels&#xA;Declare @Truncate_Query nvarchar(200)&#xA;&#xA;Set @TableVar = '09817'&#xA;Set @TableName = (SELECT table_name FROM Staging_Kart.information_schema.tables WHERE table_name LIKE'SSB_' + @TableVar + '%')&#xA;&#xA;Set @Truncate_Query = N'Truncate Table Staging_Kart.[dbo].[' + @TableName + ']'&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA;&#x9;-- Declares&#xA;&#x9;Declare @t Table(Kommunenummer varchar(50), Innvandringskategorikode varchar(50), Landbakgrunnskode varchar(50),  Variabel varchar(50), År Int, Verdi numeric(18,4))&#xA;&#x9;Declare @m Table(Kommune varchar(150), Kommunenummer varchar(50), Innvandringskategorinavn varchar(150), Innvandringskategorikode varchar(50), Landbakgrunnsnavn varchar(150), Landbakgrunnskode varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År int, År2 int)&#xA;&#x9;Declare @m2 Table(Kommune varchar(150), Kommunenummer varchar(50), Innvandringskategorinavn varchar(150), Innvandringskategorikode varchar(50), Landbakgrunnsnavn varchar(150), Landbakgrunnskode varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År int, År2 int)&#xA;&#x9;Declare @m3 Table(Kommune varchar(150), Kommunenummer varchar(50), Innvandringskategorinavn varchar(150), Innvandringskategorikode varchar(50), Landbakgrunnsnavn varchar(150), Landbakgrunnskode varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År int, År2 int)&#xA;&#x9;&#xA;&#x9;-- Inserts&#xA;&#x9;Insert @t Exec Staging_Kart.dbo.SSB_Values_AlleAar @TabellNummer=@TableVar, @Omfang=0&#xA;&#x9;Insert @m Exec Staging_Kart.dbo.SSB_Metadata @TabellNummer=@TableVar&#xA;&#x9;Insert @m2 Exec Staging_Kart.dbo.SSB_Metadata @TabellNummer=@TableVar&#xA;&#x9;Insert @m3 Exec Staging_Kart.dbo.SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA;&#x9;RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA;&#x9;set noexec on&#xA;end catch&#xA;&#xA;&#xA;-- Executes&#xA;Exec sp_executesql @Truncate_Query&#xA;&#xA;Insert Into Staging_Kart.dbo.[SSB_09817 Innvandrere og norskfødte med innvandrerforeldre, innvandringskategori, landbakgrunn]&#xA;&#xA;Select&#x9;dat.Kommunenummer,&#xA;&#x9;&#x9;dat.Innvandringskategorikode,&#xA;&#x9;&#x9;met.Innvandringskategorinavn,&#xA;&#x9;&#x9;dat.Landbakgrunnskode,&#xA;&#x9;&#x9;met2.Landbakgrunnsnavn,&#xA;&#x9;&#x9;dat.Variabel,&#xA;&#x9;&#x9;met3.Variabelnavn,&#xA;&#x9;&#x9;dat.År, &#xA;&#x9;&#x9;dat.Verdi&#xA; &#xA;from @t dat&#xA;Join @m met ON met.Innvandringskategorikode = dat.Innvandringskategorikode&#xA;Join @m2 met2 ON met2.Landbakgrunnskode = dat.Landbakgrunnskode&#xA;Join @m3 met3 ON met3.Variabel = dat.Variabel&#xA;&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Befolkning og demografi\Les SSB_11342 Areal og befolkning"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{125881A0-B0C1-4D7F-9A3D-3AB99377E1DC}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Les SSB_11342 Areal og befolkning"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="7">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CE753D13-4665-45DC-B920-B89FDD5F054C}"
+              SQLTask:SqlStatementSource="-- Variabels&#xA;Declare @TableVar varchar(5)&#xA;Declare @TableName varchar(150)&#xA;&#xA;-- Query variabels&#xA;Declare @Truncate_Query nvarchar(200)&#xA;&#xA;Set @TableVar = '11342'&#xA;Set @TableName = (SELECT table_name FROM Staging_Kart.information_schema.tables WHERE table_name LIKE'SSB_' + @TableVar + '%')&#xA;&#xA;Set @Truncate_Query = N'Truncate Table Staging_Kart.[dbo].[' + @TableName + ']'&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA;&#x9;-- Declares&#xA;&#x9;Declare @t Table(Kommunenummer varchar(50), Variabel varchar(50), År Int, Verdi numeric(18,4))&#xA;&#x9;Declare @m Table(Kommune varchar(150), Kommunenummer varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År int, År2 int)&#xA;&#x9;&#xA;&#x9;-- Inserts&#xA;&#x9;Insert @t Exec Staging_Kart.dbo.SSB_Values_AlleAar @TabellNummer=@TableVar, @Omfang=0&#xA;&#x9;Insert @m Exec Staging_Kart.dbo.SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA;&#x9;RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA;&#x9;set noexec on&#xA;end catch&#xA;&#xA;&#xA;-- Executes&#xA;Exec sp_executesql @Truncate_Query&#xA;&#xA;Insert Into Staging_Kart.dbo.[SSB_11342 Areal og befolkning]&#xA;&#xA;Select&#x9;dat.Kommunenummer,&#xA;&#x9;&#x9;dat.Variabel,&#xA;&#x9;&#x9;met.Variabelnavn,&#xA;&#x9;&#x9;dat.År, &#xA;&#x9;&#x9;dat.Verdi&#xA; &#xA;from @t dat&#xA;Join @m met ON met.Variabel = dat.Variabel&#xA;&#xA;-- Areal (km²)&#xA;Where dat.Variabel IN ( 'ArealKm2', 'Folkemengde')&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Befolkning og demografi\Les SSB_12026 Kirkelige brukere"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{19DF95EE-7EF4-4386-A1FB-6931E48D66FA}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Les SSB_12026 Kirkelige brukere"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="8">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CE753D13-4665-45DC-B920-B89FDD5F054C}"
+              SQLTask:SqlStatementSource="-- Variabels&#xA;Declare @TableVar varchar(5)&#xA;Declare @TableName varchar(150)&#xA;&#xA;-- Query variabels&#xA;Declare @Truncate_Query nvarchar(200)&#xA;&#xA;Set @TableVar = '12026'&#xA;Set @TableName = (SELECT table_name FROM Staging_Kart.information_schema.tables WHERE table_name LIKE'SSB_' + @TableVar + '%')&#xA;&#xA;Set @Truncate_Query = N'Truncate Table Staging_Kart.[dbo].[' + @TableName + ']'&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA; -- Declares&#xA; Declare @t Table(Kommunenummer varchar(50), Variabel varchar(50), År varchar(50), Verdi numeric(18,4))&#xA; Declare @m Table(Kommune varchar(150), Kommunenummer varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År varchar(50), År2 varchar(50))&#xA;&#xA; -- Inserts&#xA; Insert @t Exec Staging_Kart.dbo.SSB_Values_AlleAar @TabellNummer=@TableVar, @Omfang=0&#xA; Insert @m Exec Staging_Kart.dbo.SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA; RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA; set noexec on&#xA;end catch&#xA;&#xA;&#xA;-- Executes&#xA;Exec sp_executesql @Truncate_Query&#xA;&#xA;Insert Into Staging_Kart.dbo.[SSB_12026 Kirkelige brukere]&#xA;&#xA;Select dat.Kommunenummer,&#xA;&#x9;dat.Variabel,&#xA;&#x9;met.Variabelnavn,&#xA;&#x9;dat.År, &#xA;&#x9;dat.Verdi&#xA; &#xA;from @t dat&#xA;Join @m met ON met.Variabel = dat.Variabel&#xA;&#xA;Where dat.Kommunenummer NOT LIKE ('EKG%')&#xA;AND dat.Variabel IN ('KOSmedlemmerdnk0000','KOSmedltroslivs0000')&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="264,66"
+          Id="Package\Befolkning og demografi\Les SSB_06096 Personer 18 år og over i privathusholdninger (prosent), samlivsform"
+          TopLeft="49.8857134954205,93.5" />
+        <NodeLayout
+          Size="164,52"
+          Id="Package\Befolkning og demografi\Les SSB_07459 Befolkning, kjønn, alder"
+          TopLeft="99.8857134954205,178.5" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\Befolkning og demografi\Les SSB_09588 Flytting"
+          TopLeft="100.385713495421,329.5" />
+        <NodeLayout
+          Size="177,48"
+          Id="Package\Befolkning og demografi\Les SSB_09747 Privathusholdninger"
+          TopLeft="93.3857134954205,390.5" />
+        <NodeLayout
+          Size="233,101"
+          Id="Package\Befolkning og demografi\Les SSB_09817 Innvandrere og norskfødte med innvandrerforeldre, innvandringskategori, landbakgrunn"
+          TopLeft="65.3857134954205,457.5" />
+        <NodeLayout
+          Size="194,55"
+          Id="Package\Befolkning og demografi\Les SSB_11342 Areal og befolkning"
+          TopLeft="84.8857134954205,577.5" />
+        <NodeLayout
+          Size="211,56"
+          Id="Package\Befolkning og demografi\Les SSB_05212 Folkemengde, kjønn, tettbygd spredtbygd strøk"
+          TopLeft="76.3857134954205,18.5" />
+        <NodeLayout
+          Size="192,61"
+          Id="Package\Befolkning og demografi\Les SSB_08531 Medlemmer i trus- og livssynssamfunn som mottek offentleg stønad og er utanfor DNK, religion livssyn"
+          TopLeft="85.8857134954205,249.5" />
+        <NodeLayout
+          Size="234,42"
+          Id="Package\Befolkning og demografi\Les SSB_12026 Kirkelige brukere"
+          TopLeft="64.8857134954205,651.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="376,748"
+          Size="376,792"
+          Id="Package\Befolkning og demografi"
+          TopLeft="159.166664294898,44.299999511838" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

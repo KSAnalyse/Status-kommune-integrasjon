@@ -1,0 +1,2559 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/7/2019 1:45:05 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="UTLAAN17-X1G3"
+  DTS:CreatorName="KSINT\axel.hjelmervik.hansen"
+  DTS:DTSID="{B900E916-D850-42C1-B6DC-BAE56033D859}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3026.27"
+  DTS:LocaleID="1044"
+  DTS:ObjectName="Manuelle Data - Kommunehelse"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="52"
+  DTS:VersionGUID="{81BB52A1-9833-4AAB-A13D-A66138783597}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Kommunehelse leger]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{F4E3631A-8F69-4BC0-B531-A1C032B7A16C}"
+      DTS:ObjectName="Kommunehelse leger">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\\ks-sql2018\w\Utvekslingsfiler\Kommunehelse\Kommunehelse leger.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Kommunehelse årsverk ergoterapeuter]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{6EB42382-65B4-459D-ADE5-4B9C307F6D8B}"
+      DTS:ObjectName="Kommunehelse årsverk ergoterapeuter">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.16.0;Data Source=\\ks-sql2018\w\Utvekslingsfiler\Kommunehelse\Kommunehelse årsverk ergoterapeuter v3.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Kommunehelse årsverk helsestasjon og skolehelsetjeneste]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{02363AA8-9A37-48EA-A91A-978366119B8D}"
+      DTS:ObjectName="Kommunehelse årsverk helsestasjon og skolehelsetjeneste">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.16.0;Data Source=\\ks-sql2018\w\Utvekslingsfiler\Kommunehelse\Kommunehelse årsverk helsestasjon og skolehelsetjeneste v3.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:LogProviders>
+    <DTS:LogProvider
+      DTS:ConfigString="KS-SQL2018.Staging"
+      DTS:CreationName="Microsoft.LogProviderSQLServer"
+      DTS:Description="Writes log entries for events to a SQL Server database"
+      DTS:DTSID="{65BBFD7C-63AC-4D4B-A3B7-FF51D377102C}"
+      DTS:ObjectName="SSIS log provider for SQL Server">
+      <DTS:ObjectData>
+        <InnerObject />
+      </DTS:ObjectData>
+    </DTS:LogProvider>
+  </DTS:LogProviders>
+  <DTS:Variables />
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="2">
+    <DTS:Property
+      DTS:DataType="8"
+      DTS:Name="EventFilter">21,7,OnError,19,OnExecStatusChanged,13,OnInformation,27,OnPipelinePostComponentCall,25,OnPipelinePostEndOfRowset,25,OnPipelinePostPrimeOutput,26,OnPipelinePreComponentCall,24,OnPipelinePreEndOfRowset,24,OnPipelinePrePrimeOutput,18,OnPipelineRowsSent,13,OnPostExecute,14,OnPostValidate,12,OnPreExecute,13,OnPreValidate,10,OnProgress,13,OnQueryCancel,12,OnTaskFailed,22,OnVariableValueChanged,9,OnWarning,10,Diagnostic,12,DiagnosticEx</DTS:Property>
+    <DTS:Property
+      DTS:EventName="Diagnostic"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="DiagnosticEx"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnError"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnExecStatusChanged"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnInformation"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePostComponentCall"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePostEndOfRowset"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePostPrimeOutput"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePreComponentCall"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePreEndOfRowset"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePrePrimeOutput"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelineRowsSent"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPostExecute"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPostValidate"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPreExecute"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPreValidate"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnProgress"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnQueryCancel"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnTaskFailed"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnVariableValueChanged"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnWarning"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+  </DTS:LoggingOptions>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Kommunehelse"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:DelayValidation="True"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{93C8C79F-0D9F-4944-A56C-833ADEE7CC56}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Kommunehelse">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Kommunehelse\Les Kommunehelse leger"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{DCCD7DAC-3873-4642-9DE3-5A311A09CCB4}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Les Kommunehelse leger"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Kommunehelse\Les Kommunehelse leger\Data Conversion"
+                  componentClassID="Microsoft.DataConvert"
+                  contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Data Conversion"
+                  name="Data Conversion"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Kommunehelse\Les Kommunehelse leger\Data Conversion.Inputs[Data Conversion Input]"
+                      name="Data Conversion Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse leger\Data Conversion.Inputs[Data Conversion Input].Columns[Kommunenummer]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Kommunenummer"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Outputs[Excel Source Output].Columns[Kommunenummer]" />
+                        <inputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse leger\Data Conversion.Inputs[Data Conversion Input].Columns[Variabelnavn]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Variabelnavn"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Outputs[Excel Source Output].Columns[Variabelnavn]" />
+                        <inputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse leger\Data Conversion.Inputs[Data Conversion Input].Columns[Kilde]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Kilde"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Outputs[Excel Source Output].Columns[Kilde]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Kommunehelse\Les Kommunehelse leger\Data Conversion.Outputs[Data Conversion Output]"
+                      exclusionGroup="1"
+                      name="Data Conversion Output"
+                      synchronousInputId="Package\Kommunehelse\Les Kommunehelse leger\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse leger\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Kommunenummer]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse leger\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Kommunenummer]"
+                          name="Copy of Kommunenummer"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Outputs[Excel Source Output].Columns[Kommunenummer]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse leger\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Variabelnavn]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="150"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse leger\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Variabelnavn]"
+                          name="Copy of Variabelnavn"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Outputs[Excel Source Output].Columns[Variabelnavn]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse leger\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Kilde]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="150"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse leger\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Kilde]"
+                          name="Copy of Kilde"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Outputs[Excel Source Output].Columns[Kilde]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Kommunehelse\Les Kommunehelse leger\Data Conversion.Outputs[Data Conversion Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Data Conversion Error Output"
+                      synchronousInputId="Package\Kommunehelse\Les Kommunehelse leger\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse leger\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse leger\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse leger\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse leger\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger"
+                  componentClassID="Microsoft.ExcelSource"
+                  contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Excel Source"
+                  name="Kommunehelse leger"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">'Justert tabell$'</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mapping from parameters in the SQL command to variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Kommunehelse leger]"
+                      connectionManagerRefId="Package.ConnectionManagers[Kommunehelse leger]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Outputs[Excel Source Output]"
+                      name="Excel Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Outputs[Excel Source Output].Columns[Kommunenummer]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Outputs[Excel Source Output].ExternalColumns[Kommunenummer]"
+                          length="255"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Outputs[Excel Source Output].Columns[Kommunenummer]"
+                          name="Kommunenummer"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Outputs[Excel Source Output].Columns[Variabelnavn]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Outputs[Excel Source Output].ExternalColumns[Variabelnavn]"
+                          length="255"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Outputs[Excel Source Output].Columns[Variabelnavn]"
+                          name="Variabelnavn"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Outputs[Excel Source Output].Columns[Kilde]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Outputs[Excel Source Output].ExternalColumns[Kilde]"
+                          length="255"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Outputs[Excel Source Output].Columns[Kilde]"
+                          name="Kilde"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Outputs[Excel Source Output].Columns[Verdi]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Outputs[Excel Source Output].ExternalColumns[Verdi]"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Outputs[Excel Source Output].Columns[Verdi]"
+                          name="Verdi"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Outputs[Excel Source Output].Columns[Årgang]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Outputs[Excel Source Output].ExternalColumns[Årgang]"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Outputs[Excel Source Output].Columns[Årgang]"
+                          name="Årgang"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Outputs[Excel Source Output].ExternalColumns[Kommunenummer]"
+                          dataType="wstr"
+                          length="255"
+                          name="Kommunenummer" />
+                        <externalMetadataColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Outputs[Excel Source Output].ExternalColumns[Variabelnavn]"
+                          dataType="wstr"
+                          length="255"
+                          name="Variabelnavn" />
+                        <externalMetadataColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Outputs[Excel Source Output].ExternalColumns[Kilde]"
+                          dataType="wstr"
+                          length="255"
+                          name="Kilde" />
+                        <externalMetadataColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Outputs[Excel Source Output].ExternalColumns[Verdi]"
+                          dataType="r8"
+                          name="Verdi" />
+                        <externalMetadataColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Outputs[Excel Source Output].ExternalColumns[Årgang]"
+                          dataType="r8"
+                          name="Årgang" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Outputs[Excel Source Error Output]"
+                      isErrorOut="true"
+                      name="Excel Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Outputs[Excel Source Error Output].Columns[Kommunenummer]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Outputs[Excel Source Error Output].Columns[Kommunenummer]"
+                          name="Kommunenummer" />
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Outputs[Excel Source Error Output].Columns[Variabelnavn]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Outputs[Excel Source Error Output].Columns[Variabelnavn]"
+                          name="Variabelnavn" />
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Outputs[Excel Source Error Output].Columns[Kilde]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Outputs[Excel Source Error Output].Columns[Kilde]"
+                          name="Kilde" />
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Outputs[Excel Source Error Output].Columns[Verdi]"
+                          dataType="r8"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Outputs[Excel Source Error Output].Columns[Verdi]"
+                          name="Verdi" />
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Outputs[Excel Source Error Output].Columns[Årgang]"
+                          dataType="r8"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Outputs[Excel Source Error Output].Columns[Årgang]"
+                          name="Årgang" />
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Kommunehelse\Les Kommunehelse leger\KS_KPR01 KPR Legedata"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="KS_KPR01 KPR Legedata"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[KS_KPR01 KPR Legedata]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Kommunehelse\Les Kommunehelse leger\KS_KPR01 KPR Legedata.Connections[OleDbConnection]"
+                      connectionManagerID="{87175433-C4F6-4E6D-9D6E-61FE32283CE9}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[KS-SQL2018 Staging ASSS]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Kommunehelse\Les Kommunehelse leger\KS_KPR01 KPR Legedata.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse leger\KS_KPR01 KPR Legedata.Inputs[OLE DB Destination Input].Columns[Verdi]"
+                          cachedDataType="r8"
+                          cachedName="Verdi"
+                          externalMetadataColumnId="Package\Kommunehelse\Les Kommunehelse leger\KS_KPR01 KPR Legedata.Inputs[OLE DB Destination Input].ExternalColumns[Verdi]"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Outputs[Excel Source Output].Columns[Verdi]" />
+                        <inputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse leger\KS_KPR01 KPR Legedata.Inputs[OLE DB Destination Input].Columns[Årgang]"
+                          cachedDataType="r8"
+                          cachedName="Årgang"
+                          externalMetadataColumnId="Package\Kommunehelse\Les Kommunehelse leger\KS_KPR01 KPR Legedata.Inputs[OLE DB Destination Input].ExternalColumns[År]"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Outputs[Excel Source Output].Columns[Årgang]" />
+                        <inputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse leger\KS_KPR01 KPR Legedata.Inputs[OLE DB Destination Input].Columns[Copy of Kommunenummer]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Copy of Kommunenummer"
+                          externalMetadataColumnId="Package\Kommunehelse\Les Kommunehelse leger\KS_KPR01 KPR Legedata.Inputs[OLE DB Destination Input].ExternalColumns[Kommunenummer]"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse leger\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Kommunenummer]" />
+                        <inputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse leger\KS_KPR01 KPR Legedata.Inputs[OLE DB Destination Input].Columns[Copy of Variabelnavn]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="150"
+                          cachedName="Copy of Variabelnavn"
+                          externalMetadataColumnId="Package\Kommunehelse\Les Kommunehelse leger\KS_KPR01 KPR Legedata.Inputs[OLE DB Destination Input].ExternalColumns[Variabelnavn]"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse leger\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Variabelnavn]" />
+                        <inputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse leger\KS_KPR01 KPR Legedata.Inputs[OLE DB Destination Input].Columns[Copy of Kilde]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="150"
+                          cachedName="Copy of Kilde"
+                          externalMetadataColumnId="Package\Kommunehelse\Les Kommunehelse leger\KS_KPR01 KPR Legedata.Inputs[OLE DB Destination Input].ExternalColumns[Kilde]"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse leger\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Kilde]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse leger\KS_KPR01 KPR Legedata.Inputs[OLE DB Destination Input].ExternalColumns[Kommunenummer]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Kommunenummer" />
+                        <externalMetadataColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse leger\KS_KPR01 KPR Legedata.Inputs[OLE DB Destination Input].ExternalColumns[Variabelnavn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="150"
+                          name="Variabelnavn" />
+                        <externalMetadataColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse leger\KS_KPR01 KPR Legedata.Inputs[OLE DB Destination Input].ExternalColumns[År]"
+                          dataType="i4"
+                          name="År" />
+                        <externalMetadataColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse leger\KS_KPR01 KPR Legedata.Inputs[OLE DB Destination Input].ExternalColumns[Verdi]"
+                          dataType="numeric"
+                          name="Verdi"
+                          precision="18"
+                          scale="8" />
+                        <externalMetadataColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse leger\KS_KPR01 KPR Legedata.Inputs[OLE DB Destination Input].ExternalColumns[Kilde]"
+                          codePage="1252"
+                          dataType="str"
+                          length="150"
+                          name="Kilde" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Kommunehelse\Les Kommunehelse leger\KS_KPR01 KPR Legedata.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Kommunehelse\Les Kommunehelse leger\KS_KPR01 KPR Legedata.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse leger\KS_KPR01 KPR Legedata.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse leger\KS_KPR01 KPR Legedata.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse leger\KS_KPR01 KPR Legedata.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse leger\KS_KPR01 KPR Legedata.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Kommunehelse\Les Kommunehelse leger.Paths[Data Conversion Output]"
+                  endId="Package\Kommunehelse\Les Kommunehelse leger\KS_KPR01 KPR Legedata.Inputs[OLE DB Destination Input]"
+                  name="Data Conversion Output"
+                  startId="Package\Kommunehelse\Les Kommunehelse leger\Data Conversion.Outputs[Data Conversion Output]" />
+                <path
+                  refId="Package\Kommunehelse\Les Kommunehelse leger.Paths[Excel Source Output]"
+                  endId="Package\Kommunehelse\Les Kommunehelse leger\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Excel Source Output"
+                  startId="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger.Outputs[Excel Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{EC217492-45A5-4490-AADC-EE603C571411}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Les Kommunehelse årsverk ergoterapeuter"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Data Conversion"
+                  componentClassID="Microsoft.DataConvert"
+                  contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Data Conversion"
+                  name="Data Conversion"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Data Conversion.Inputs[Data Conversion Input]"
+                      name="Data Conversion Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Data Conversion.Inputs[Data Conversion Input].Columns[Kommunenummer]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Kommunenummer"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Outputs[Excel Source Output].Columns[Kommunenummer]" />
+                        <inputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Data Conversion.Inputs[Data Conversion Input].Columns[Variabelnavn]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Variabelnavn"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Outputs[Excel Source Output].Columns[Variabelnavn]" />
+                        <inputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Data Conversion.Inputs[Data Conversion Input].Columns[Kilde]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Kilde"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Outputs[Excel Source Output].Columns[Kilde]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Data Conversion.Outputs[Data Conversion Output]"
+                      exclusionGroup="1"
+                      name="Data Conversion Output"
+                      synchronousInputId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Kommunenummer]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Kommunenummer]"
+                          name="Copy of Kommunenummer"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Outputs[Excel Source Output].Columns[Kommunenummer]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Variabelnavn]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="150"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Variabelnavn]"
+                          name="Copy of Variabelnavn"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Outputs[Excel Source Output].Columns[Variabelnavn]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Kilde]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="150"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Kilde]"
+                          name="Copy of Kilde"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Outputs[Excel Source Output].Columns[Kilde]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Data Conversion.Outputs[Data Conversion Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Data Conversion Error Output"
+                      synchronousInputId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter"
+                  componentClassID="Microsoft.ExcelSource"
+                  contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Excel Source"
+                  name="Kommunehelse årsverk ergoterapeuter"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">Ark1$</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mapping from parameters in the SQL command to variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Kommunehelse årsverk ergoterapeuter]"
+                      connectionManagerRefId="Package.ConnectionManagers[Kommunehelse årsverk ergoterapeuter]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Outputs[Excel Source Output]"
+                      name="Excel Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Outputs[Excel Source Output].Columns[Kommunenummer]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Outputs[Excel Source Output].ExternalColumns[Kommunenummer]"
+                          length="255"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Outputs[Excel Source Output].Columns[Kommunenummer]"
+                          name="Kommunenummer"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Outputs[Excel Source Output].Columns[Variabelnavn]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Outputs[Excel Source Output].ExternalColumns[Variabelnavn]"
+                          length="255"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Outputs[Excel Source Output].Columns[Variabelnavn]"
+                          name="Variabelnavn"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Outputs[Excel Source Output].Columns[Kilde]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Outputs[Excel Source Output].ExternalColumns[Kilde]"
+                          length="255"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Outputs[Excel Source Output].Columns[Kilde]"
+                          name="Kilde"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Outputs[Excel Source Output].Columns[Verdi]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Outputs[Excel Source Output].ExternalColumns[Verdi]"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Outputs[Excel Source Output].Columns[Verdi]"
+                          name="Verdi"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Outputs[Excel Source Output].Columns[Årgang]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Outputs[Excel Source Output].ExternalColumns[Årgang]"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Outputs[Excel Source Output].Columns[Årgang]"
+                          name="Årgang"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Outputs[Excel Source Output].ExternalColumns[Kommunenummer]"
+                          dataType="wstr"
+                          length="255"
+                          name="Kommunenummer" />
+                        <externalMetadataColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Outputs[Excel Source Output].ExternalColumns[Variabelnavn]"
+                          dataType="wstr"
+                          length="255"
+                          name="Variabelnavn" />
+                        <externalMetadataColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Outputs[Excel Source Output].ExternalColumns[Kilde]"
+                          dataType="wstr"
+                          length="255"
+                          name="Kilde" />
+                        <externalMetadataColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Outputs[Excel Source Output].ExternalColumns[Verdi]"
+                          dataType="r8"
+                          name="Verdi" />
+                        <externalMetadataColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Outputs[Excel Source Output].ExternalColumns[Årgang]"
+                          dataType="r8"
+                          name="Årgang" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Outputs[Excel Source Error Output]"
+                      isErrorOut="true"
+                      name="Excel Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Outputs[Excel Source Error Output].Columns[Kommunenummer]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Outputs[Excel Source Error Output].Columns[Kommunenummer]"
+                          name="Kommunenummer" />
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Outputs[Excel Source Error Output].Columns[Variabelnavn]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Outputs[Excel Source Error Output].Columns[Variabelnavn]"
+                          name="Variabelnavn" />
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Outputs[Excel Source Error Output].Columns[Kilde]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Outputs[Excel Source Error Output].Columns[Kilde]"
+                          name="Kilde" />
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Outputs[Excel Source Error Output].Columns[Verdi]"
+                          dataType="r8"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Outputs[Excel Source Error Output].Columns[Verdi]"
+                          name="Verdi" />
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Outputs[Excel Source Error Output].Columns[Årgang]"
+                          dataType="r8"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Outputs[Excel Source Error Output].Columns[Årgang]"
+                          name="Årgang" />
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\KS_Årsverk ergoterapeuter"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="KS_Årsverk ergoterapeuter"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[KS_Årsverk ergoterapeuter]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\KS_Årsverk ergoterapeuter.Connections[OleDbConnection]"
+                      connectionManagerID="{87175433-C4F6-4E6D-9D6E-61FE32283CE9}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[KS-SQL2018 Staging ASSS]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\KS_Årsverk ergoterapeuter.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\KS_Årsverk ergoterapeuter.Inputs[OLE DB Destination Input].Columns[Årgang]"
+                          cachedDataType="r8"
+                          cachedName="Årgang"
+                          externalMetadataColumnId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\KS_Årsverk ergoterapeuter.Inputs[OLE DB Destination Input].ExternalColumns[År]"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Outputs[Excel Source Output].Columns[Årgang]" />
+                        <inputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\KS_Årsverk ergoterapeuter.Inputs[OLE DB Destination Input].Columns[Copy of Variabelnavn]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="150"
+                          cachedName="Copy of Variabelnavn"
+                          externalMetadataColumnId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\KS_Årsverk ergoterapeuter.Inputs[OLE DB Destination Input].ExternalColumns[Variabelnavn]"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Variabelnavn]" />
+                        <inputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\KS_Årsverk ergoterapeuter.Inputs[OLE DB Destination Input].Columns[Copy of Kommunenummer]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Copy of Kommunenummer"
+                          externalMetadataColumnId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\KS_Årsverk ergoterapeuter.Inputs[OLE DB Destination Input].ExternalColumns[Kommunenummer]"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Kommunenummer]" />
+                        <inputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\KS_Årsverk ergoterapeuter.Inputs[OLE DB Destination Input].Columns[Copy of Kilde]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="150"
+                          cachedName="Copy of Kilde"
+                          externalMetadataColumnId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\KS_Årsverk ergoterapeuter.Inputs[OLE DB Destination Input].ExternalColumns[Kilde]"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Kilde]" />
+                        <inputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\KS_Årsverk ergoterapeuter.Inputs[OLE DB Destination Input].Columns[Verdi]"
+                          cachedDataType="r8"
+                          cachedName="Verdi"
+                          externalMetadataColumnId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\KS_Årsverk ergoterapeuter.Inputs[OLE DB Destination Input].ExternalColumns[Verdi]"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Outputs[Excel Source Output].Columns[Verdi]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\KS_Årsverk ergoterapeuter.Inputs[OLE DB Destination Input].ExternalColumns[Kommunenummer]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Kommunenummer" />
+                        <externalMetadataColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\KS_Årsverk ergoterapeuter.Inputs[OLE DB Destination Input].ExternalColumns[Variabelnavn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="150"
+                          name="Variabelnavn" />
+                        <externalMetadataColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\KS_Årsverk ergoterapeuter.Inputs[OLE DB Destination Input].ExternalColumns[Kilde]"
+                          codePage="1252"
+                          dataType="str"
+                          length="150"
+                          name="Kilde" />
+                        <externalMetadataColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\KS_Årsverk ergoterapeuter.Inputs[OLE DB Destination Input].ExternalColumns[År]"
+                          dataType="i4"
+                          name="År" />
+                        <externalMetadataColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\KS_Årsverk ergoterapeuter.Inputs[OLE DB Destination Input].ExternalColumns[Verdi]"
+                          dataType="numeric"
+                          name="Verdi"
+                          precision="18"
+                          scale="8" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\KS_Årsverk ergoterapeuter.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\KS_Årsverk ergoterapeuter.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\KS_Årsverk ergoterapeuter.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\KS_Årsverk ergoterapeuter.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\KS_Årsverk ergoterapeuter.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\KS_Årsverk ergoterapeuter.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter.Paths[Data Conversion Output]"
+                  endId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\KS_Årsverk ergoterapeuter.Inputs[OLE DB Destination Input]"
+                  name="Data Conversion Output"
+                  startId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Data Conversion.Outputs[Data Conversion Output]" />
+                <path
+                  refId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter.Paths[Excel Source Output]"
+                  endId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Excel Source Output"
+                  startId="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter.Outputs[Excel Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{D86AC3CA-F42A-4D78-B173-B04CE9A9E005}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Data Conversion"
+                  componentClassID="Microsoft.DataConvert"
+                  contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Data Conversion"
+                  name="Data Conversion"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Data Conversion.Inputs[Data Conversion Input]"
+                      name="Data Conversion Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Data Conversion.Inputs[Data Conversion Input].Columns[Kommunenummer]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Kommunenummer"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Outputs[Excel Source Output].Columns[Kommunenummer]" />
+                        <inputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Data Conversion.Inputs[Data Conversion Input].Columns[Variabelnavn]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Variabelnavn"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Outputs[Excel Source Output].Columns[Variabelnavn]" />
+                        <inputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Data Conversion.Inputs[Data Conversion Input].Columns[Kilde]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Kilde"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Outputs[Excel Source Output].Columns[Kilde]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Data Conversion.Outputs[Data Conversion Output]"
+                      exclusionGroup="1"
+                      name="Data Conversion Output"
+                      synchronousInputId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Kommunenummer]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Kommunenummer]"
+                          name="Copy of Kommunenummer"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Outputs[Excel Source Output].Columns[Kommunenummer]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Variabelnavn]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="150"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Variabelnavn]"
+                          name="Copy of Variabelnavn"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Outputs[Excel Source Output].Columns[Variabelnavn]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Kilde]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="150"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Kilde]"
+                          name="Copy of Kilde"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Outputs[Excel Source Output].Columns[Kilde]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Data Conversion.Outputs[Data Conversion Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Data Conversion Error Output"
+                      synchronousInputId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste"
+                  componentClassID="Microsoft.ExcelSource"
+                  contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Excel Source"
+                  name="Kommunehelse årsverk helsestasjon og skolehelsetjeneste"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">Ark1$</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mapping from parameters in the SQL command to variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Kommunehelse årsverk helsestasjon og skolehelsetjeneste]"
+                      connectionManagerRefId="Package.ConnectionManagers[Kommunehelse årsverk helsestasjon og skolehelsetjeneste]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Outputs[Excel Source Output]"
+                      name="Excel Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Outputs[Excel Source Output].Columns[Kommunenummer]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Outputs[Excel Source Output].ExternalColumns[Kommunenummer]"
+                          length="255"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Outputs[Excel Source Output].Columns[Kommunenummer]"
+                          name="Kommunenummer"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Outputs[Excel Source Output].Columns[Variabelnavn]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Outputs[Excel Source Output].ExternalColumns[Variabelnavn]"
+                          length="255"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Outputs[Excel Source Output].Columns[Variabelnavn]"
+                          name="Variabelnavn"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Outputs[Excel Source Output].Columns[Kilde]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Outputs[Excel Source Output].ExternalColumns[Kilde]"
+                          length="255"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Outputs[Excel Source Output].Columns[Kilde]"
+                          name="Kilde"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Outputs[Excel Source Output].Columns[Verdi]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Outputs[Excel Source Output].ExternalColumns[Verdi]"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Outputs[Excel Source Output].Columns[Verdi]"
+                          name="Verdi"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Outputs[Excel Source Output].Columns[Årgang]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Outputs[Excel Source Output].ExternalColumns[Årgang]"
+                          length="255"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Outputs[Excel Source Output].Columns[Årgang]"
+                          name="Årgang"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Outputs[Excel Source Output].ExternalColumns[Kommunenummer]"
+                          dataType="wstr"
+                          length="255"
+                          name="Kommunenummer" />
+                        <externalMetadataColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Outputs[Excel Source Output].ExternalColumns[Variabelnavn]"
+                          dataType="wstr"
+                          length="255"
+                          name="Variabelnavn" />
+                        <externalMetadataColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Outputs[Excel Source Output].ExternalColumns[Kilde]"
+                          dataType="wstr"
+                          length="255"
+                          name="Kilde" />
+                        <externalMetadataColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Outputs[Excel Source Output].ExternalColumns[Verdi]"
+                          dataType="r8"
+                          name="Verdi" />
+                        <externalMetadataColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Outputs[Excel Source Output].ExternalColumns[Årgang]"
+                          dataType="r8"
+                          name="Årgang" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Outputs[Excel Source Error Output]"
+                      isErrorOut="true"
+                      name="Excel Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Outputs[Excel Source Error Output].Columns[Kommunenummer]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Outputs[Excel Source Error Output].Columns[Kommunenummer]"
+                          name="Kommunenummer" />
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Outputs[Excel Source Error Output].Columns[Variabelnavn]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Outputs[Excel Source Error Output].Columns[Variabelnavn]"
+                          name="Variabelnavn" />
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Outputs[Excel Source Error Output].Columns[Kilde]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Outputs[Excel Source Error Output].Columns[Kilde]"
+                          name="Kilde" />
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Outputs[Excel Source Error Output].Columns[Verdi]"
+                          dataType="r8"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Outputs[Excel Source Error Output].Columns[Verdi]"
+                          name="Verdi" />
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Outputs[Excel Source Error Output].Columns[Årgang]"
+                          dataType="r8"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Outputs[Excel Source Error Output].Columns[Årgang]"
+                          name="Årgang" />
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\KS_Årsverk helsestasjon og skolehelsetjeneste"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="KS_Årsverk helsestasjon og skolehelsetjeneste"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[KS_Årsverk helsestasjon og skolehelsetjeneste]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\KS_Årsverk helsestasjon og skolehelsetjeneste.Connections[OleDbConnection]"
+                      connectionManagerID="{87175433-C4F6-4E6D-9D6E-61FE32283CE9}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[KS-SQL2018 Staging ASSS]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\KS_Årsverk helsestasjon og skolehelsetjeneste.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\KS_Årsverk helsestasjon og skolehelsetjeneste.Inputs[OLE DB Destination Input].Columns[Årgang]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Årgang"
+                          externalMetadataColumnId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\KS_Årsverk helsestasjon og skolehelsetjeneste.Inputs[OLE DB Destination Input].ExternalColumns[År]"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Outputs[Excel Source Output].Columns[Årgang]" />
+                        <inputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\KS_Årsverk helsestasjon og skolehelsetjeneste.Inputs[OLE DB Destination Input].Columns[Copy of Kommunenummer]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Copy of Kommunenummer"
+                          externalMetadataColumnId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\KS_Årsverk helsestasjon og skolehelsetjeneste.Inputs[OLE DB Destination Input].ExternalColumns[Kommunenummer]"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Kommunenummer]" />
+                        <inputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\KS_Årsverk helsestasjon og skolehelsetjeneste.Inputs[OLE DB Destination Input].Columns[Copy of Variabelnavn]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="150"
+                          cachedName="Copy of Variabelnavn"
+                          externalMetadataColumnId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\KS_Årsverk helsestasjon og skolehelsetjeneste.Inputs[OLE DB Destination Input].ExternalColumns[Variabelnavn]"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Variabelnavn]" />
+                        <inputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\KS_Årsverk helsestasjon og skolehelsetjeneste.Inputs[OLE DB Destination Input].Columns[Copy of Kilde]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="150"
+                          cachedName="Copy of Kilde"
+                          externalMetadataColumnId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\KS_Årsverk helsestasjon og skolehelsetjeneste.Inputs[OLE DB Destination Input].ExternalColumns[Kilde]"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Kilde]" />
+                        <inputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\KS_Årsverk helsestasjon og skolehelsetjeneste.Inputs[OLE DB Destination Input].Columns[Verdi]"
+                          cachedDataType="r8"
+                          cachedName="Verdi"
+                          externalMetadataColumnId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\KS_Årsverk helsestasjon og skolehelsetjeneste.Inputs[OLE DB Destination Input].ExternalColumns[Verdi]"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Outputs[Excel Source Output].Columns[Verdi]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\KS_Årsverk helsestasjon og skolehelsetjeneste.Inputs[OLE DB Destination Input].ExternalColumns[Kommunenummer]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Kommunenummer" />
+                        <externalMetadataColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\KS_Årsverk helsestasjon og skolehelsetjeneste.Inputs[OLE DB Destination Input].ExternalColumns[Variabelnavn]"
+                          codePage="1252"
+                          dataType="str"
+                          length="150"
+                          name="Variabelnavn" />
+                        <externalMetadataColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\KS_Årsverk helsestasjon og skolehelsetjeneste.Inputs[OLE DB Destination Input].ExternalColumns[Kilde]"
+                          codePage="1252"
+                          dataType="str"
+                          length="150"
+                          name="Kilde" />
+                        <externalMetadataColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\KS_Årsverk helsestasjon og skolehelsetjeneste.Inputs[OLE DB Destination Input].ExternalColumns[År]"
+                          dataType="i4"
+                          name="År" />
+                        <externalMetadataColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\KS_Årsverk helsestasjon og skolehelsetjeneste.Inputs[OLE DB Destination Input].ExternalColumns[Verdi]"
+                          dataType="numeric"
+                          name="Verdi"
+                          precision="18"
+                          scale="2" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\KS_Årsverk helsestasjon og skolehelsetjeneste.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\KS_Årsverk helsestasjon og skolehelsetjeneste.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\KS_Årsverk helsestasjon og skolehelsetjeneste.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\KS_Årsverk helsestasjon og skolehelsetjeneste.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\KS_Årsverk helsestasjon og skolehelsetjeneste.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\KS_Årsverk helsestasjon og skolehelsetjeneste.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Paths[Data Conversion Output]"
+                  endId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\KS_Årsverk helsestasjon og skolehelsetjeneste.Inputs[OLE DB Destination Input]"
+                  name="Data Conversion Output"
+                  startId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Data Conversion.Outputs[Data Conversion Output]" />
+                <path
+                  refId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Paths[Excel Source Output]"
+                  endId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Excel Source Output"
+                  startId="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Outputs[Excel Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Kommunehelse\Slett KS_KPR01 KPR Legedata"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{24701099-13D9-4671-A857-DA49344FE379}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Slett KS_KPR01 KPR Legedata"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{87175433-C4F6-4E6D-9D6E-61FE32283CE9}"
+              SQLTask:SqlStatementSource="Truncate Table [KS_KPR01 KPR Legedata]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Kommunehelse\Slett KS_Årsverk ergoterapeuter"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:DelayValidation="True"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{3494D414-C106-4DAC-BF4F-075309148FFC}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Slett KS_Årsverk ergoterapeuter"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{87175433-C4F6-4E6D-9D6E-61FE32283CE9}"
+              SQLTask:SqlStatementSource="Truncate Table [KS_Årsverk ergoterapeuter]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Kommunehelse\Slett KS_Årsverk helsestasjon og skolehelsetjeneste"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{5D8155F7-C6A9-4A84-9F40-B0F9A98DC6C2}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Slett KS_Årsverk helsestasjon og skolehelsetjeneste"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{87175433-C4F6-4E6D-9D6E-61FE32283CE9}"
+              SQLTask:SqlStatementSource="Truncate Table [KS_Årsverk helsestasjon og skolehelsetjeneste]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Kommunehelse.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{8AC412E0-44C5-46DE-A126-A3E7B6B58999}"
+          DTS:From="Package\Kommunehelse\Slett KS_Årsverk ergoterapeuter"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Kommunehelse.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{A7EBCD1B-E813-47E5-95D9-5EA3A014120B}"
+          DTS:From="Package\Kommunehelse\Slett KS_Årsverk helsestasjon og skolehelsetjeneste"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Kommunehelse.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{7122C410-EEEF-40A5-A005-9049A68B8417}"
+          DTS:From="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Kommunehelse\Slett KS_KPR01 KPR Legedata" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Kommunehelse.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{3634B251-2075-4C99-821C-FB9532C96607}"
+          DTS:From="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\Kommunehelse\Slett KS_Årsverk helsestasjon og skolehelsetjeneste" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Kommunehelse.PrecedenceConstraints[Constraint 4]"
+          DTS:CreationName=""
+          DTS:DTSID="{30CA413C-EACB-4CD3-980A-42ACDE938BD5}"
+          DTS:From="Package\Kommunehelse\Slett KS_KPR01 KPR Legedata"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 4"
+          DTS:To="Package\Kommunehelse\Les Kommunehelse leger" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="196.666666666667,42.6666666666667"
+          Id="Package\Kommunehelse\Les Kommunehelse leger"
+          TopLeft="418.499990873039,229.195232132134" />
+        <NodeLayout
+          Size="281.333333333334,42"
+          Id="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter"
+          TopLeft="329,44" />
+        <NodeLayout
+          Size="373.333333333334,42"
+          Id="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste"
+          TopLeft="325,131" />
+        <NodeLayout
+          Size="221.333333333334,42.6666666666667"
+          Id="Package\Kommunehelse\Slett KS_KPR01 KPR Legedata"
+          TopLeft="45.8809488064477,226.904755761226" />
+        <NodeLayout
+          Size="230,42"
+          Id="Package\Kommunehelse\Slett KS_Årsverk ergoterapeuter"
+          TopLeft="22,43" />
+        <NodeLayout
+          Size="232,66.6666666666667"
+          Id="Package\Kommunehelse\Slett KS_Årsverk helsestasjon og skolehelsetjeneste"
+          TopLeft="24,124" />
+        <EdgeLayout
+          Id="Package\Kommunehelse.PrecedenceConstraints[Constraint]"
+          TopLeft="252,64.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="77,0"
+              Start="0,0"
+              End="69.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="69.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Kommunehelse.PrecedenceConstraints[Constraint 1]"
+          TopLeft="256,154.75">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="69,0"
+              Start="0,0"
+              End="61.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="61.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Kommunehelse.PrecedenceConstraints[Constraint 2]"
+          TopLeft="511.666666666667,173">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-355.119051193552,53.904755761226"
+              Start="0,0"
+              End="-355.119051193552,46.404755761226">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.952377880613" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.952377880613"
+                    Point2="0,26.952377880613"
+                    Point3="-4,26.952377880613" />
+                  <mssgle:LineSegment
+                    End="-351.119051193552,26.952377880613" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-351.119051193552,26.952377880613"
+                    Point2="-355.119051193552,26.952377880613"
+                    Point3="-355.119051193552,30.952377880613" />
+                  <mssgle:LineSegment
+                    End="-355.119051193552,46.404755761226" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Kommunehelse.PrecedenceConstraints[Constraint 3]"
+          TopLeft="469.666666666667,86">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-329.666666666667,38"
+              Start="0,0"
+              End="-329.666666666667,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15"
+                    Point2="0,19"
+                    Point3="-4,19" />
+                  <mssgle:LineSegment
+                    End="-325.666666666667,19" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-325.666666666667,19"
+                    Point2="-329.666666666667,19"
+                    Point3="-329.666666666667,23" />
+                  <mssgle:LineSegment
+                    End="-329.666666666667,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Kommunehelse.PrecedenceConstraints[Constraint 4]"
+          TopLeft="267.214282139781,249.383327280013">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="151.285708733258,0"
+              Start="0,0"
+              End="143.785708733258,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="143.785708733258,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="734,346.666666666667"
+          Size="734,390"
+          Id="Package\Kommunehelse"
+          TopLeft="194,74" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Kommunehelse\Les Kommunehelse leger">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="178.666666666667,42.6666666666667"
+          Id="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger"
+          TopLeft="141.249997895211,35.0999993723631" />
+        <NodeLayout
+          Size="157.333333333334,42.6666666666667"
+          Id="Package\Kommunehelse\Les Kommunehelse leger\Data Conversion"
+          TopLeft="153.333331048489,127.39999772191" />
+        <NodeLayout
+          Size="162.666666666667,42.6666666666667"
+          Id="Package\Kommunehelse\Les Kommunehelse leger\KS_KPR01 KPR Legedata"
+          TopLeft="145.41666449979,221.866662699381" />
+        <EdgeLayout
+          Id="Package\Kommunehelse\Les Kommunehelse leger.Paths[Excel Source Output]"
+          TopLeft="231.29166447185,77.7666660390298">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49.6333316828807"
+              Start="0,0"
+              End="0,42.1333316828807">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.1333316828807" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Kommunehelse\Les Kommunehelse leger.Paths[Data Conversion Output]"
+          TopLeft="229.374997774139,170.066664388577">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,51.7999983108043"
+              Start="0,0"
+              End="0,44.2999983108043">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.2999983108043" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Kommunehelse\Les Kommunehelse leger\Kommunehelse leger">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Kommunehelse\Les Kommunehelse leger\KS_KPR01 KPR Legedata">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="262,42"
+          Id="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter"
+          TopLeft="160,55" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Data Conversion"
+          TopLeft="219,165" />
+        <NodeLayout
+          Size="206,42"
+          Id="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\KS_Årsverk ergoterapeuter"
+          TopLeft="195,283" />
+        <EdgeLayout
+          Id="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter.Paths[Excel Source Output]"
+          TopLeft="294,97">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,68"
+              Start="0,0"
+              End="0,60.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,60.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter.Paths[Data Conversion Output]"
+          TopLeft="297.5,207">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,76"
+              Start="0,0"
+              End="0,68.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,68.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\Kommunehelse årsverk ergoterapeuter">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Kommunehelse\Les Kommunehelse årsverk ergoterapeuter\KS_Årsverk ergoterapeuter">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="354,42"
+          Id="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste"
+          TopLeft="178,58" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Data Conversion"
+          TopLeft="280,158" />
+        <NodeLayout
+          Size="298,42"
+          Id="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\KS_Årsverk helsestasjon og skolehelsetjeneste"
+          TopLeft="210,286" />
+        <EdgeLayout
+          Id="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Paths[Excel Source Output]"
+          TopLeft="356.5,100">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,58"
+              Start="0,0"
+              End="0,50.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste.Paths[Data Conversion Output]"
+          TopLeft="358.5,200">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,86"
+              Start="0,0"
+              End="0,78.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,78.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\Kommunehelse årsverk helsestasjon og skolehelsetjeneste">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Kommunehelse\Les Kommunehelse årsverk helsestasjon og skolehelsetjeneste\KS_Årsverk helsestasjon og skolehelsetjeneste">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

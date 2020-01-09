@@ -1,0 +1,204 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/15/2018 2:05:09 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="SQL2018"
+  DTS:CreatorName="KSINT\axel.hjelmervik.hansen"
+  DTS:DTSID="{4BF29566-BF34-4872-9702-87D23CF4BA3D}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3026.27"
+  DTS:LocaleID="1044"
+  DTS:ObjectName="SSB Kommunehelsetjenesten"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="259"
+  DTS:VersionGUID="{6C2C206B-A4D1-4C49-8FA9-0657751DEC4F}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Kommunehelsetjenesten"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{F92A91A1-61EC-4984-B52D-2D04C018BBB4}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Kommunehelsetjenesten">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Kommunehelsetjenesten\Les SSB_11993 Aktivitet i helsestasjons- og skolehelsetjenesten, etter helsekontroller"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{54B5861F-A64A-4C6C-94FE-24E5824FE2ED}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Les SSB_11993 Aktivitet i helsestasjons- og skolehelsetjenesten, etter helsekontroller"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="3">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{87175433-C4F6-4E6D-9D6E-61FE32283CE9}"
+              SQLTask:SqlStatementSource="Use [Staging_ASSS]&#xA;&#xA;-- Variabels&#xA;Declare @TableVar varchar(5)&#xA;Declare @TableName varchar(150)&#xA;&#xA;-- Query variabels&#xA;Declare @Truncate_Query nvarchar(200)&#xA;&#xA;Set @TableVar = '11993'&#xA;Set @TableName = (SELECT table_name FROM information_schema.tables WHERE table_name LIKE'SSB_' + @TableVar + '%')&#xA;&#xA;Set @Truncate_Query = N'Truncate Table [' + @TableName + ']'&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA;&#x9;-- Declares&#xA;&#x9;declare @t table(Kontrollkode varchar(50), Kommunenummer varchar(50), Variabel varchar(50),År Int,Verdi numeric(18,4))&#xA;&#x9;declare @m table(Kontrollnavn varchar(150), Kontrollkode varchar(50), Kommune Varchar(150), Kommunenummer varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År Int, År2 Int)&#xA;&#x9;declare @m2 table(Kontrollnavn varchar(150), Kontrollkode varchar(50), Kommune Varchar(150), Kommunenummer varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År Int, År2 Int)&#xA;&#x9;&#xA;&#x9;-- Inserts&#xA;&#x9;insert @t Exec SSB_Values_AlleAar @TabellNummer=@TableVar, @Omfang=0&#xA;&#x9;insert @m Exec SSB_Metadata @TabellNummer=@TableVar&#xA;&#x9;insert @m2 Exec SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA;&#x9;RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA;&#x9;set noexec on&#xA;end catch&#xA;&#xA;&#xA;-- Executes&#xA;Exec sp_executesql @Truncate_Query&#xA;&#xA;Insert Into [SSB_11993 Aktivitet i helsestasjons- og skolehelsetjenesten, etter helsekontroller]&#xA;&#xA;Select&#x9;dat.Kommunenummer,&#xA;&#x9;&#x9;dat.Kontrollkode,&#xA;&#x9;&#x9;met.Kontrollnavn,&#xA;&#x9;&#x9;dat.Variabel ,&#xA;&#x9;&#x9;met2.Variabelnavn,&#xA;&#x9;&#x9;dat.År, &#xA;&#x9;&#x9;dat.Verdi&#xA;&#xA;from @t dat &#xA;Join @m met On  met.Kontrollkode = dat.Kontrollkode&#xA;Join @m2 met2 On met2.Variabel = dat.Variabel&#xA;&#xA;-- Barn (antall)&#xA;Where dat.Variabel = 'KOSantallbarn0001'&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Kommunehelsetjenesten\Les SSB_11994 Helsestasjons- og skolehelsetjenesteårsverk, etter utdanning"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{EB97AD33-177A-4047-AD45-CC6073EAFB82}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Les SSB_11994 Helsestasjons- og skolehelsetjenesteårsverk, etter utdanning"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="4">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{87175433-C4F6-4E6D-9D6E-61FE32283CE9}"
+              SQLTask:SqlStatementSource="Use [Staging_ASSS]&#xA;&#xA;-- Variabels&#xA;Declare @TableVar varchar(5)&#xA;Declare @TableName varchar(150)&#xA;&#xA;-- Query variabels&#xA;Declare @Truncate_Query nvarchar(200)&#xA;&#xA;Set @TableVar = '11994'&#xA;Set @TableName = (SELECT table_name FROM information_schema.tables WHERE table_name LIKE'SSB_' + @TableVar + '%')&#xA;&#xA;Set @Truncate_Query = N'Truncate Table [' + @TableName + ']'&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA;&#x9;-- Declares&#xA;&#x9;Declare @t table(Kommunenummer varchar(50), Utdanning varchar(50),Variabel varchar(50),År Int,Verdi numeric(18,4))&#xA;&#x9;Declare @m table(Kommune Varchar(150), Kommunenummer varchar(50), Utdanningnavn varchar(150), Utdanning varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År Int, År2 Int)&#xA;&#x9;Declare @m2 table(Kommune Varchar(150), Kommunenummer varchar(50), Utdanningnavn varchar(150), Utdanning varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År Int, År2 Int)&#xA;&#x9;&#xA;&#x9;-- Inserts&#xA;&#x9;Insert @t Exec SSB_Values_AlleAar @TabellNummer=@TableVar, @Omfang=0&#xA;&#x9;Insert @m Exec SSB_Metadata @TabellNummer=@TableVar&#xA;&#x9;Insert @m2 Exec SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA;&#x9;RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA;&#x9;set noexec on&#xA;end catch&#xA;&#xA;&#xA;-- Executes&#xA;Exec sp_executesql @Truncate_Query&#xA;&#xA;Insert Into [SSB_11994 Helsestasjons- og skolehelsetjenesteårsverk, utdanning]&#xA;&#xA;Select&#x9;dat.Kommunenummer,&#xA;&#x9;&#x9;dat.Utdanning,&#xA;&#x9;&#x9;met.Utdanningnavn,&#xA;&#x9;&#x9;dat.Variabel ,&#xA;&#x9;&#x9;met2.Variabelnavn,&#xA;&#x9;&#x9;dat.År, &#xA;&#x9;&#x9;dat.Verdi&#xA; &#xA;from @t dat &#xA;Join @m met On  met.Utdanning = dat.Utdanning&#xA;Join @m2 met2 On met2.Variabel = dat.Variabel&#xA;&#xA;-- Avtalte årsverk (årsverk)&#xA;Where dat.Variabel = 'KOSavtalteaarsve0000'&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Kommunehelsetjenesten\Les SSB_11995 Fysioterapeutårsverk i kommunale helse- og omsorgstjenester, etter avtaleform og funksjon"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{60BAA32D-5AC3-4DA6-A0CF-85DD37F0D4CA}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Les SSB_11995 Fysioterapeutårsverk i kommunale helse- og omsorgstjenester, etter avtaleform og funksjon"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="6">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{87175433-C4F6-4E6D-9D6E-61FE32283CE9}"
+              SQLTask:SqlStatementSource="Use [Staging_ASSS]&#xA;&#xA;-- Variabels&#xA;Declare @TableVar varchar(5)&#xA;Declare @TableName varchar(150)&#xA;&#xA;-- Query variabels&#xA;Declare @Truncate_Query nvarchar(200)&#xA;&#xA;Set @TableVar = '11995'&#xA;Set @TableName = (SELECT table_name FROM information_schema.tables WHERE table_name LIKE'SSB_' + @TableVar + '%')&#xA;&#xA;Set @Truncate_Query = N'Truncate Table [' + @TableName + ']'&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA;&#x9;-- Declares&#xA;&#x9;declare @t table(Avtaleformkode varchar(50), Funksjonskode varchar(50), Kommunenummer varchar(50), Variabel varchar(50),År Int,Verdi numeric(18,4))&#xA;&#x9;declare @m table(Avtaleform Varchar(150), Avtaleformkode varchar(50), Funksjon varchar(150), Funksjonskode varchar(50), Kommune varchar(150), Kommunenummer varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År Int, År2 Int)&#xA;&#x9;declare @m2 table(Avtaleform Varchar(150), Avtaleformkode varchar(50), Funksjon varchar(150), Funksjonskode varchar(50), Kommune varchar(150), Kommunenummer varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År Int, År2 Int)&#xA;&#x9;declare @m3 table(Avtaleform Varchar(150), Avtaleformkode varchar(50), Funksjon varchar(150), Funksjonskode varchar(50), Kommune varchar(150), Kommunenummer varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År Int, År2 Int)&#xA;&#x9;&#xA;&#x9;-- Inserts&#xA;&#x9;insert @t Exec SSB_Values_AlleAar @TabellNummer=@TableVar, @Omfang=0&#xA;&#x9;insert @m Exec SSB_Metadata @TabellNummer=@TableVar&#xA;&#x9;insert @m2 Exec SSB_Metadata @TabellNummer=@TableVar&#xA;&#x9;insert @m3 Exec SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA;&#x9;RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA;&#x9;set noexec on&#xA;end catch&#xA;&#xA;&#xA;-- Executes&#xA;Exec sp_executesql @Truncate_Query&#xA;&#xA;Insert Into [SSB_11995 Fysioterapeutårsverk i kommunale helse- og omsorgstjenester, etter avtaleform, funksjon]&#xA;&#xA;Select&#x9;dat.Kommunenummer,&#xA;&#x9;&#x9;dat.Funksjonskode,&#xA;&#x9;&#x9;met2.Funksjon,&#xA;&#x9;&#x9;dat.Avtaleformkode,&#xA;&#x9;&#x9;met.Avtaleform,&#xA;&#x9;&#x9;dat.Variabel,&#xA;&#x9;&#x9;met3.Variabelnavn,&#xA;&#x9;&#x9;dat.År, &#xA;&#x9;&#x9;dat.Verdi&#xA; &#xA;from @t dat&#xA;Join @m met ON met.Avtaleformkode = dat.Avtaleformkode&#xA;Join @m2 met2 ON met2.Funksjonskode = dat.Funksjonskode&#xA;Join @m3 met3 ON met3.Variabel = dat.Variabel&#xA;&#xA;-- Avtalte fysioterapeutårsverk (årsverk)&#xA;Where dat.Variabel = 'KOSfysioaarsverk0001'&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Kommunehelsetjenesten\Les SSB_11996 Legeårsverk i kommunale helse- og omsorgstjenester, etter avtaleform og funksjon"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{86B899B4-D705-4632-85B1-24A23A3D361C}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Les SSB_11996 Legeårsverk i kommunale helse- og omsorgstjenester, etter avtaleform og funksjon"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="5">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{87175433-C4F6-4E6D-9D6E-61FE32283CE9}"
+              SQLTask:SqlStatementSource="Truncate Table Staging.dbo.[SSB_11996 Legeårsverk i kommunale helse- og omsorgstjenester, etter avtaleform og funksjon]&#xA;Go&#xA;&#xA;--declares&#xA;declare @t table(Avtaleformkode varchar(50), Funksjonskode varchar(50), Kommunenummer varchar(50), Variabel varchar(50),År Int,Verdi numeric(18,4))&#xA;declare @m table(Avtaleform Varchar(150), Avtaleformkode varchar(50), Funksjon varchar(150), Funksjonskode varchar(50), Kommune varchar(150), Kommunenummer varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År Int, År2 Int)&#xA;declare @m2 table(Avtaleform Varchar(150), Avtaleformkode varchar(50), Funksjon varchar(150), Funksjonskode varchar(50), Kommune varchar(150), Kommunenummer varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År Int, År2 Int)&#xA;declare @m3 table(Avtaleform Varchar(150), Avtaleformkode varchar(50), Funksjon varchar(150), Funksjonskode varchar(50), Kommune varchar(150), Kommunenummer varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År Int, År2 Int)&#xA;&#xA;--inserts&#xA;insert @t Exec Staging.dbo.SSB_Values_AlleAar @TabellNummer=&quot;11996&quot;, @Omfang=0&#xA;Insert @m Exec Staging.dbo.SSB_Metadata @TabellNummer=&quot;11996&quot;&#xA;Insert @m2 Exec Staging.dbo.SSB_Metadata @TabellNummer=&quot;11996&quot;&#xA;Insert @m3 Exec Staging.dbo.SSB_Metadata @TabellNummer=&quot;11996&quot;&#xA;&#xA;Insert Into Staging.dbo.[SSB_11996 Legeårsverk i kommunale helse- og omsorgstjenester, etter avtaleform og funksjon]&#xA;&#xA;Select&#x9;dat.Kommunenummer,&#xA;&#x9;&#x9;dat.Avtaleformkode,&#xA;&#x9;&#x9;met.Avtaleform,&#xA;&#x9;&#x9;dat.Funksjonskode,&#xA;&#x9;&#x9;met2.Funksjon,&#xA;&#x9;&#x9;dat.Variabel,&#xA;&#x9;&#x9;met3.Variabelnavn,&#xA;&#x9;&#x9;dat.År, &#xA;&#x9;&#x9;dat.Verdi&#xA; &#xA;from @t dat&#xA;Join @m met ON met.Avtaleformkode = dat.Avtaleformkode&#xA;Join @m2 met2 ON met2.Funksjonskode = dat.Funksjonskode&#xA;Join @m3 met3 ON met3.Variabel = dat.Variabel&#xA;&#xA;-- Avtalte legeårsverk (årsverk)&#xA;Where dat.Variabel = 'KOSlegeaarsverk0000'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Kommunehelsetjenesten\Les SSB_12005 Fastlegelister og fastlegekonsultasjoner"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{563D1ED2-910F-4C3C-A244-B426D73CA092}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Les SSB_12005 Fastlegelister og fastlegekonsultasjoner"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{87175433-C4F6-4E6D-9D6E-61FE32283CE9}"
+              SQLTask:SqlStatementSource="Use [Staging_ASSS]&#xA;&#xA;-- Variabels&#xA;Declare @TableVar varchar(5)&#xA;Declare @TableName varchar(150)&#xA;&#xA;-- Query variabels&#xA;Declare @Truncate_Query nvarchar(200)&#xA;&#xA;Set @TableVar = '12005'&#xA;Set @TableName = (SELECT table_name FROM information_schema.tables WHERE table_name LIKE'SSB_' + @TableVar + '%')&#xA;&#xA;Set @Truncate_Query = N'Truncate Table [' + @TableName + ']'&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA;&#x9;-- Declares&#xA;&#x9;declare @t Table(Kommunenummer varchar(50), Variabel varchar(50),År Int,Verdi numeric(18,4))&#xA;&#x9;declare @m Table(Kommune varchar(150), Kommunenummer varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År int, År2 int)&#xA;&#x9;&#xA;&#x9;-- Inserts&#xA;&#x9;insert @t Exec SSB_Values_AlleAar @TabellNummer=@TableVar, @Omfang=0&#xA;&#x9;insert @m Exec SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA;&#x9;RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA;&#x9;set noexec on&#xA;end catch&#xA;&#xA;&#xA;-- Executes&#xA;Exec sp_executesql @Truncate_Query&#xA;&#xA;Insert Into [SSB_12005 Fastlegelister og fastlegekonsultasjoner]&#xA;&#xA;Select&#x9;dat.Kommunenummer,&#xA;&#x9;&#x9;dat.Variabel ,&#xA;&#x9;&#x9;met.Variabelnavn,&#xA;&#x9;&#x9;dat.År, &#xA;&#x9;&#x9;dat.Verdi&#xA; &#xA;&#xA;from @t dat&#xA;Join @m met&#xA;ON dat.Variabel = met.Variabel&#xA;&#xA;-- Andel pasienter uten lege (prosent)&#xA;-- Andel kvinnelige leger (prosent)&#xA;Where dat.Variabel NOT IN ('KOSandelpasiente0000', 'KOSandelkvinnele0000')&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Kommunehelsetjenesten\Les SSB_12191 Kommunehelse - supplerende grunnlagstall og nøkkeltall"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{59DCD603-F88D-43FA-8F60-D1DE98326DA3}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Les SSB_12191 Kommunehelse - supplerende grunnlagstall og nøkkeltall"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{87175433-C4F6-4E6D-9D6E-61FE32283CE9}"
+              SQLTask:SqlStatementSource="Truncate Table Staging.dbo.[SSB_12191 Kommunehelse - supplerende grunnlagstall og nøkkeltall]&#xA;Go&#xA;&#xA;declare @t table(Kommunenummer varchar(50), Variabel varchar(50),År Int,Verdi numeric(18,4))&#xA;declare @m table(Kommune Varchar(150), Kommunenummer varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År Int, År2 Int)&#xA;insert @t Exec Staging.dbo.SSB_Values_AlleAar @TabellNummer=&quot;12191&quot;, @Omfang=0&#xA;Insert @m Exec Staging.dbo.SSB_Metadata @TabellNummer=&quot;12191&quot;&#xA;&#xA;&#xA;Insert Into Staging.dbo.[SSB_12191 Kommunehelse - supplerende grunnlagstall og nøkkeltall]&#xA;&#xA;&#xA;Select&#x9;dat.Kommunenummer,&#xA;&#x9;&#x9;dat.Variabel ,&#xA;&#x9;&#x9;met.Variabelnavn,&#xA;&#x9;&#x9;dat.År, &#xA;&#x9;&#x9;dat.Verdi&#xA; &#xA;&#xA;from @t dat &#xA;Join @m met&#xA;On  Ltrim(Rtrim(met.Variabel)) = Ltrim(Rtrim(dat.Variabel)) &#xA;--Where Verdi Is Not Null" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Kommunehelsetjenesten\Les SSB_12209 Utvalgte nøkkeltall for helse og omsorg"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{383F7ACE-8FE5-48AF-8BCD-12D69F152F57}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Les SSB_12209 Utvalgte nøkkeltall for helse og omsorg"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="2">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{87175433-C4F6-4E6D-9D6E-61FE32283CE9}"
+              SQLTask:SqlStatementSource="Truncate Table Staging.dbo.[SSB_12209 Utvalgte nøkkeltall for helse og omsorg]&#xA;Go&#xA;&#xA;declare @t table(Kommunenummer varchar(50), Variabel varchar(50),År Int,Verdi numeric(18,4))&#xA;declare @m table(Kommune Varchar(150), Kommunenummer varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År Int, År2 Int)&#xA;insert @t Exec Staging.dbo.SSB_Values_AlleAar @TabellNummer=&quot;12209&quot;, @Omfang=0&#xA;Insert @m Exec Staging.dbo.SSB_Metadata @TabellNummer=&quot;12209&quot;&#xA;&#xA;&#xA;Insert Into Staging.dbo.[SSB_12209 Utvalgte nøkkeltall for helse og omsorg]&#xA;&#xA;&#xA;Select&#x9;dat.Kommunenummer,&#xA;&#x9;&#x9;dat.Variabel ,&#xA;&#x9;&#x9;met.Variabelnavn,&#xA;&#x9;&#x9;dat.År, &#xA;&#x9;&#x9;dat.Verdi&#xA; &#xA;&#xA;from @t dat &#xA;Join @m met&#xA;On  Ltrim(Rtrim(met.Variabel)) = Ltrim(Rtrim(dat.Variabel)) &#xA;--Where Verdi Is Not Null" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="286,42"
+          Id="Package\Kommunehelsetjenesten\Les SSB_11993 Aktivitet i helsestasjons- og skolehelsetjenesten, etter helsekontroller"
+          TopLeft="44.9450113378686,58.5" />
+        <NodeLayout
+          Size="254,53.3333333333334"
+          Id="Package\Kommunehelsetjenesten\Les SSB_11994 Helsestasjons- og skolehelsetjenesteårsverk, etter utdanning"
+          TopLeft="61.3616779983265,111.900000007748" />
+        <NodeLayout
+          Size="304,50"
+          Id="Package\Kommunehelsetjenesten\Les SSB_11995 Fysioterapeutårsverk i kommunale helse- og omsorgstjenester, etter avtaleform og funksjon"
+          TopLeft="35.9450113378688,177.166666666667" />
+        <NodeLayout
+          Size="296,61.3333333333334"
+          Id="Package\Kommunehelsetjenesten\Les SSB_11996 Legeårsverk i kommunale helse- og omsorgstjenester, etter avtaleform og funksjon"
+          TopLeft="42.4450113378686,239" />
+        <NodeLayout
+          Size="234,42"
+          Id="Package\Kommunehelsetjenesten\Les SSB_12005 Fastlegelister og fastlegekonsultasjoner"
+          TopLeft="70.5283446774108,311.833333333333" />
+        <NodeLayout
+          Size="298.666666666667,42"
+          Id="Package\Kommunehelsetjenesten\Les SSB_12191 Kommunehelse - supplerende grunnlagstall og nøkkeltall"
+          TopLeft="38.4450113378686,365.666666666667" />
+        <NodeLayout
+          Size="340,42.6666666666667"
+          Id="Package\Kommunehelsetjenesten\Les SSB_12209 Utvalgte nøkkeltall for helse og omsorg"
+          TopLeft="17.9450113378686,419.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="392,517.333333333334"
+          Size="392,560"
+          Id="Package\Kommunehelsetjenesten"
+          TopLeft="292.488073389262,116.901583690738" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,141 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/10/2019 3:18:25 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="UTLAAN17-X1G3"
+  DTS:CreatorName="KSINT\8093AHA"
+  DTS:DTSID="{AF70BE8C-9994-44D6-85DD-179679C4E9E3}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3026.27"
+  DTS:LocaleID="1044"
+  DTS:ObjectName="SSB Demokrati og politikk"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="16"
+  DTS:VersionGUID="{5D7C713B-3BCC-4C23-8A79-C9957FAB0A14}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DoP"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{715BFC36-94C2-4ABA-A8B6-913DBC056B0A}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DoP">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\DoP\Les SSB_01182 Kommunestyrevalget Representanter, kjønn, politisk partiog fireårlig"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{58FCF076-4E6D-4B7B-8126-F1FF1E9C783F}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Les SSB_01182 Kommunestyrevalget Representanter, kjønn, politisk partiog fireårlig"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="3">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CE753D13-4665-45DC-B920-B89FDD5F054C}"
+              SQLTask:SqlStatementSource="-- Variabels&#xA;Declare @TableVar varchar(5)&#xA;Declare @TableName varchar(150)&#xA;&#xA;-- Query variabels&#xA;Declare @Truncate_Query nvarchar(200)&#xA;&#xA;Set @TableVar = '01182'&#xA;Set @TableName = (SELECT table_name FROM Staging_Kart.information_schema.tables WHERE table_name LIKE'SSB_' + @TableVar + '%')&#xA;&#xA;Set @Truncate_Query = N'Truncate Table Staging_Kart.[dbo].[' + @TableName + ']'&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA; -- Declares&#xA; Declare @t Table(Kommunenummer varchar(50), Kjønnkode varchar(50), Partikode varchar(50), Variabel varchar(50), År varchar(50), Verdi numeric(18,4))&#xA; Declare @m Table(Kommune varchar(150), Kommunenummer varchar(50), Kjønnnavn varchar(150), Kjønnkode varchar(50), Partinavn varchar(150), Partikode varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År varchar(50), År2 varchar(50))&#xA; Declare @m2 Table(Kommune varchar(150), Kommunenummer varchar(50), Kjønnnavn varchar(150), Kjønnkode varchar(50), Partinavn varchar(150), Partikode varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År varchar(50), År2 varchar(50))&#xA; Declare @m3 Table(Kommune varchar(150), Kommunenummer varchar(50), Kjønnnavn varchar(150), Kjønnkode varchar(50), Partinavn varchar(150), Partikode varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År varchar(50), År2 varchar(50))&#xA;&#xA; -- Inserts&#xA; Insert @t Exec Staging_Kart.dbo.SSB_Values_AlleAar @TabellNummer=@TableVar, @Omfang=0&#xA; Insert @m Exec Staging_Kart.dbo.SSB_Metadata @TabellNummer=@TableVar&#xA; Insert @m2 Exec Staging_Kart.dbo.SSB_Metadata @TabellNummer=@TableVar&#xA; Insert @m3 Exec Staging_Kart.dbo.SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA; RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA; set noexec on&#xA;end catch&#xA;&#xA;&#xA;-- Executes&#xA;Exec sp_executesql @Truncate_Query&#xA;&#xA;Insert Into Staging_Kart.dbo.[SSB_01182 Kommunestyrevalget. Representanter, kjønn, politisk partiog fireårlig]&#xA;&#xA;Select dat.Kommunenummer,&#xA;&#x9;dat.Kjønnkode,&#xA;&#x9;met2.Kjønnnavn,&#xA;&#x9;dat.Partikode,&#xA;&#x9;met3.Partinavn,&#xA;&#x9;dat.Variabel,&#xA;&#x9;met.Variabelnavn,&#xA;&#x9;dat.År, &#xA;&#x9;dat.Verdi&#xA; &#xA;from @t dat&#xA;Join @m met ON met.Variabel = dat.Variabel &#xA;Join @m2 met2 ON met2.Kjønnkode = dat.Kjønnkode&#xA;Join @m3 met3 ON met3.Partikode = dat.Partikode&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\DoP\Les SSB_04966 Kommunestyremedlemmer, alder, kjønnog fireårlig"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{2AAB01F5-42EA-426D-B898-B9C391A731CE}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Les SSB_04966 Kommunestyremedlemmer, alder, kjønnog fireårlig"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="2">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CE753D13-4665-45DC-B920-B89FDD5F054C}"
+              SQLTask:SqlStatementSource="-- Variabels&#xA;Declare @TableVar varchar(5)&#xA;Declare @TableName varchar(150)&#xA;&#xA;-- Query variabels&#xA;Declare @Truncate_Query nvarchar(200)&#xA;&#xA;Set @TableVar = '04966'&#xA;Set @TableName = (SELECT table_name FROM Staging_Kart.information_schema.tables WHERE table_name LIKE'SSB_' + @TableVar + '%')&#xA;&#xA;Set @Truncate_Query = N'Truncate Table Staging_Kart.[dbo].[' + @TableName + ']'&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA; -- Declares&#xA; Declare @t Table(Kommunenummer varchar(50), Alderkode varchar(50), Kjønnkode varchar(50), Variabel varchar(50), År varchar(50), Verdi numeric(18,4))&#xA; Declare @m Table(Kommune varchar(150), Kommunenummer varchar(50), Aldernavn varchar(150), Alderkode varchar(50), Kjønnnavn varchar(150), Kjønnkode varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År varchar(50), År2 varchar(50))&#xA; Declare @m2 Table(Kommune varchar(150), Kommunenummer varchar(50), Aldernavn varchar(150), Alderkode varchar(50), Kjønnnavn varchar(150), Kjønnkode varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År varchar(50), År2 varchar(50))&#xA; Declare @m3 Table(Kommune varchar(150), Kommunenummer varchar(50), Aldernavn varchar(150), Alderkode varchar(50), Kjønnnavn varchar(150), Kjønnkode varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År varchar(50), År2 varchar(50))&#xA;&#xA; -- Inserts&#xA; Insert @t Exec Staging_Kart.dbo.SSB_Values_AlleAar @TabellNummer=@TableVar, @Omfang=0&#xA; Insert @m Exec Staging_Kart.dbo.SSB_Metadata @TabellNummer=@TableVar&#xA; Insert @m2 Exec Staging_Kart.dbo.SSB_Metadata @TabellNummer=@TableVar&#xA; Insert @m3 Exec Staging_Kart.dbo.SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA; RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA; set noexec on&#xA;end catch&#xA;&#xA;&#xA;-- Executes&#xA;Exec sp_executesql @Truncate_Query&#xA;&#xA;Insert Into Staging_Kart.dbo.[SSB_04966 Kommunestyremedlemmer, alder, kjønnog fireårlig]&#xA;&#xA;Select dat.Kommunenummer,&#xA;&#x9;dat.Alderkode,&#xA;&#x9;met2.Aldernavn,&#xA;&#x9;dat.Kjønnkode,&#xA;&#x9;met3.Kjønnnavn,&#xA;&#x9;[Variabel] = dat.Variabel + Cast([Staging].dbo.checksum_int('SSB_04966 Kommunestyremedlemmer, alder, kjønnog fireårlig') As varchar),&#xA;&#x9;met.Variabelnavn,&#xA;&#x9;dat.År, &#xA;&#x9;dat.Verdi&#xA; &#xA;from @t dat&#xA;Join @m met ON met.Variabel = dat.Variabel &#xA;Join @m2 met2 ON met2.Alderkode = dat.Alderkode&#xA;Join @m3 met3 ON met3.Kjønnkode = dat.Kjønnkode&#xA;&#xA;-- Medlemmer (prosent)&#xA;Where dat.Variabel = 'Medlemmer'&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\DoP\Les SSB_08243 Stortingsvalet Valdeltaking i prosentog enkelt"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{ed8cea17-6d3a-427d-8fca-718ca098157c}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Les SSB_08243 Stortingsvalet Valdeltaking i prosentog enkelt"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CE753D13-4665-45DC-B920-B89FDD5F054C}"
+              SQLTask:SqlStatementSource="-- Variabels&#xA;Declare @TableVar varchar(5)&#xA;Declare @TableName varchar(150)&#xA;&#xA;-- Query variabels&#xA;Declare @Truncate_Query nvarchar(200)&#xA;&#xA;Set @TableVar = '08243'&#xA;Set @TableName = (SELECT table_name FROM Staging_Kart.information_schema.tables WHERE table_name LIKE'SSB_' + @TableVar + '%')&#xA;&#xA;Set @Truncate_Query = N'Truncate Table Staging_Kart.[dbo].[' + @TableName + ']'&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA; -- Declares&#xA; Declare @t Table(Kommunenummer varchar(50), Variabel varchar(50), År varchar(50), Verdi numeric(18,4))&#xA; Declare @m Table(Kommune varchar(150), Kommunenummer varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År varchar(50), År2 varchar(50))&#xA;&#xA; -- Inserts&#xA; Insert @t Exec Staging_Kart.dbo.SSB_Values_AlleAar @TabellNummer=@TableVar, @Omfang=0&#xA; Insert @m Exec Staging_Kart.dbo.SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA; RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA; set noexec on&#xA;end catch&#xA;&#xA;&#xA;-- Executes&#xA;Exec sp_executesql @Truncate_Query&#xA;&#xA;Insert Into Staging_Kart.dbo.[SSB_08243 Stortingsvalet. Valdeltaking i prosentog enkelt]&#xA;&#xA;Select dat.Kommunenummer,&#xA; dat.Variabel,&#xA; met.Variabelnavn,&#xA; dat.År, &#xA; dat.Verdi&#xA; &#xA;from @t dat&#xA;Join @m met ON met.Variabel = dat.Variabel&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\DoP\Les SSB_09475 Kommunestyrevalget Stemmer og valgdeltakelseog fireårlig"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{3EB22F85-7B00-4437-AF1B-AC7AAB8042F9}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Les SSB_09475 Kommunestyrevalget Stemmer og valgdeltakelseog fireårlig"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{CE753D13-4665-45DC-B920-B89FDD5F054C}"
+              SQLTask:SqlStatementSource="-- Variabels&#xA;Declare @TableVar varchar(5)&#xA;Declare @TableName varchar(150)&#xA;&#xA;-- Query variabels&#xA;Declare @Truncate_Query nvarchar(200)&#xA;&#xA;Set @TableVar = '09475'&#xA;Set @TableName = (SELECT table_name FROM Staging_Kart.information_schema.tables WHERE table_name LIKE'SSB_' + @TableVar + '%')&#xA;&#xA;Set @Truncate_Query = N'Truncate Table Staging_Kart.[dbo].[' + @TableName + ']'&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA; -- Declares&#xA; Declare @t Table(Kommunenummer varchar(50), Variabel varchar(50), År varchar(50), Verdi numeric(18,4))&#xA; Declare @m Table(Kommune varchar(150), Kommunenummer varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År varchar(50), År2 varchar(50))&#xA;&#xA; -- Inserts&#xA; Insert @t Exec Staging_Kart.dbo.SSB_Values_AlleAar @TabellNummer=@TableVar, @Omfang=0&#xA; Insert @m Exec Staging_Kart.dbo.SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA; RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA; set noexec on&#xA;end catch&#xA;&#xA;&#xA;-- Executes&#xA;Exec sp_executesql @Truncate_Query&#xA;&#xA;Insert Into Staging_Kart.dbo.[SSB_09475 Kommunestyrevalget. Stemmer og valgdeltakelseog fireårlig]&#xA;&#xA;Select dat.Kommunenummer,&#xA;&#x9;dat.Variabel,&#xA;&#x9;met.Variabelnavn,&#xA;&#x9;dat.År, &#xA;&#x9;dat.Verdi&#xA; &#xA;from @t dat&#xA;Join @m met ON met.Variabel = dat.Variabel &#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="190,77"
+          Id="Package\DoP\Les SSB_01182 Kommunestyrevalget Representanter, kjønn, politisk partiog fireårlig"
+          TopLeft="66.875,5.5" />
+        <NodeLayout
+          Size="197,68"
+          Id="Package\DoP\Les SSB_04966 Kommunestyremedlemmer, alder, kjønnog fireårlig"
+          TopLeft="63.375,92.5" />
+        <NodeLayout
+          Size="200,62"
+          Id="Package\DoP\Les SSB_08243 Stortingsvalet Valdeltaking i prosentog enkelt"
+          TopLeft="61.875,170.5" />
+        <NodeLayout
+          Size="188,90"
+          Id="Package\DoP\Les SSB_09475 Kommunestyrevalget Stemmer og valgdeltakelseog fireårlig"
+          TopLeft="67.875,242.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="340,388"
+          Size="340,430"
+          Id="Package\DoP"
+          TopLeft="295,79" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
