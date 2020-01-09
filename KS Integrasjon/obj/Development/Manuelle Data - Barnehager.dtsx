@@ -461,7 +461,7 @@
                     <connection
                       refId="Package\Barnehage\Barn per ansatt i barnehagen\KS_Barn per ansatt i barnehagen (bemanningstetthet).Connections[OleDbConnection]"
                       connectionManagerID="{87175433-C4F6-4E6D-9D6E-61FE32283CE9}:external"
-                      connectionManagerRefId="Project.ConnectionManagers[KS-SQL2018 Staging ASSS]"
+                      connectionManagerRefId="Project.ConnectionManagers[KS-SQL2018 Staging Status]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -972,7 +972,7 @@
                     <connection
                       refId="Package\Barnehage\Les Foreldreundersøkelsen i barnehage\KS_Foreldreundersøkelsen i barnehage.Connections[OleDbConnection]"
                       connectionManagerID="{87175433-C4F6-4E6D-9D6E-61FE32283CE9}:external"
-                      connectionManagerRefId="Project.ConnectionManagers[KS-SQL2018 Staging ASSS]"
+                      connectionManagerRefId="Project.ConnectionManagers[KS-SQL2018 Staging Status]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
