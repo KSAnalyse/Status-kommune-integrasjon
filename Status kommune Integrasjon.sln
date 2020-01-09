@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "ASSS Integrasjon", "KS Integrasjon\ASSS Integrasjon.dtproj", "{AA51CCDE-04B6-4A58-97B4-D37255C6C73A}"
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "Status Kommune Integrasjon", "KS Integrasjon\Status Kommune Integrasjon.dtproj", "{AA51CCDE-04B6-4A58-97B4-D37255C6C73A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

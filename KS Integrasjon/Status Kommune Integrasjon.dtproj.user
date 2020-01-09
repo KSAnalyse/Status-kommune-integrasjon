@@ -5,7 +5,7 @@
       <Name>Development</Name>
       <Options>
         <ServerName>KS-SQL2018</ServerName>
-        <PathOnServer>/SSISDB/KS_Integrasjon/KS_Kart</PathOnServer>
+        <PathOnServer>/SSISDB/ASSS Integrasjon/ASSS Integrasjon</PathOnServer>
         <UserIDs />
         <UserPasswords />
         <OfflineMode>false</OfflineMode>
@@ -14,7 +14,7 @@
           <ConfigurationSetting>
             <Id>LastModifiedTime</Id>
             <Name>LastModifiedTime</Name>
-            <Value xsi:type="xsd:dateTime">2019-04-10T10:21:06.444136Z</Value>
+            <Value xsi:type="xsd:dateTime">2018-03-15T13:25:53.8642732Z</Value>
           </ConfigurationSetting>
         </ParameterConfigurationSensitiveValues>
       </Options>
