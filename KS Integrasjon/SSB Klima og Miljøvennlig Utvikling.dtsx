@@ -12,8 +12,8 @@
   DTS:ObjectName="SSB Klima og Miljøvennlig Utvikling"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="296"
-  DTS:VersionGUID="{DE9245AC-2172-44EE-A272-2281A54EF1E2}">
+  DTS:VersionBuild="297"
+  DTS:VersionGUID="{32B211A7-D4C6-4073-BEAE-F5917B1D3777}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -63,7 +63,7 @@
         <NodeLayout
           Size="261.333333333334,42"
           Id="Package\Klima og Miljøvennlig Utvikling\Les SSB_11844 Kapasitet, tilgjengelighet og reiselengde"
-          TopLeft="73.9605654772253,68.2842712772273" />
+          TopLeft="74.3772321376832,23.2176054164154" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
