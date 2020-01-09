@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0"?>
 <DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:DelayValidation="True"
-  DTS:ObjectName="KS-SQL2018 Staging ASSS"
+  DTS:ObjectName="KS-SQL2018 Staging Status"
   DTS:DTSID="{87175433-C4F6-4E6D-9D6E-61FE32283CE9}"
   DTS:CreationName="OLEDB">
   <DTS:ObjectData>
     <DTS:ConnectionManager
-      DTS:ConnectionString="Data Source=KS-SQL2018;Initial Catalog=Staging_ASSS;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      DTS:ConnectionString="Data Source=KS-SQL2018;Initial Catalog=Staging_Status;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
   </DTS:ObjectData>
 </DTS:ConnectionManager>
