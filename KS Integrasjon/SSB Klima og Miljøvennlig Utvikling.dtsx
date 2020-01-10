@@ -12,8 +12,8 @@
   DTS:ObjectName="SSB Klima og Miljøvennlig Utvikling"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="306"
-  DTS:VersionGUID="{220DD702-0BA9-4A20-9BA8-9A1E8C9266B2}">
+  DTS:VersionBuild="309"
+  DTS:VersionGUID="{C8B43E7F-1B84-463A-8F58-6A84E575EBCB}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -96,6 +96,23 @@
               SQLTask:SqlStatementSource="Use [Staging_Status]&#xA;&#xA;-- Variabels&#xA;Declare @TableVar varchar(5)&#xA;Declare @TableName varchar(150)&#xA;&#xA;-- Query variabels&#xA;Declare @Truncate_Query nvarchar(200)&#xA;&#xA;Set @TableVar = '11844'&#xA;Set @TableName = (SELECT table_name FROM information_schema.tables WHERE table_name LIKE'SSB_' + @TableVar + '%')&#xA;&#xA;Set @Truncate_Query = N'Truncate Table [' + @TableName + ']'&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA;&#x9;-- Declares&#xA;&#x9;declare @t table(Kommunenummer varchar(50), Variabel varchar(50), År Int, Verdi Numeric(18,4))&#xA;&#xA;&#x9;declare @m table(Kommunenavn varchar(150), Kommunenummer varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År Int, År2 Int)&#xA;&#x9;&#xA;&#x9;-- Inserts&#xA;&#x9;insert @t Exec SSB_Values_AlleAar @TabellNummer=@TableVar&#xA;&#x9;insert @m Exec SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA;&#x9;RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA;&#x9;set noexec on&#xA;end catch&#xA;&#xA;&#xA;-- Executes&#xA;Exec sp_executesql @Truncate_Query&#xA;&#xA;Insert Into [SSB_11844 Kapasitet, tilgjengelighet og reiselengde]&#xA;&#xA;Select dat.Kommunenummer,&#xA;&#x9;dat.Variabel,&#xA;&#x9;met.Variabelnavn,&#xA;&#x9;dat.År, &#xA;&#x9;dat.Verdi&#xA;&#xA;from @t dat&#xA;Join @m met ON met.Variabel = dat.Variabel&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Klima og Miljøvennlig Utvikling\Les SSB_12313 Mengder husholdningsavfall, materiale, behandling"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{a7366fba-faf0-459d-be0b-7951f9cd9eb7}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Les SSB_12313 Mengder husholdningsavfall, materiale, behandling"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="4">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{87175433-C4F6-4E6D-9D6E-61FE32283CE9}"
+              SQLTask:SqlStatementSource="Use [Staging_Status]&#xA;&#xA;-- Variabels&#xA;Declare @TableVar varchar(5)&#xA;Declare @TableName varchar(150)&#xA;&#xA;-- Query variabels&#xA;Declare @Truncate_Query nvarchar(200)&#xA;&#xA;Set @TableVar = '12313'&#xA;Set @TableName = (SELECT table_name FROM information_schema.tables WHERE table_name LIKE'SSB_' + @TableVar + '%')&#xA;&#xA;Set @Truncate_Query = N'Truncate Table [' + @TableName + ']'&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA;&#x9;-- Declares&#xA;&#x9;declare @t table(Kommunenummer varchar(50), Materialekode varchar(50), Behandlingkode varchar(50), Variabel varchar(50), År Int, Verdi Numeric(18,4))&#xA;&#xA;&#x9;declare @m table(Kommunenavn varchar(150), Kommunenummer varchar(50), Materialenavn varchar(150), Materialekode varchar(50), &#xA;&#x9;&#x9;Behandlingnavn varchar(150), Behandlingkode varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År Int, År2 Int)&#xA;&#x9;declare @m2 table(Kommunenavn varchar(150), Kommunenummer varchar(50), Materialenavn varchar(150), Materialekode varchar(50), &#xA;&#x9;&#x9;Behandlingnavn varchar(150), Behandlingkode varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År Int, År2 Int)&#xA;&#x9;&#xA;&#x9;-- Inserts&#xA;&#x9;insert @t Exec SSB_Values_AlleAar @TabellNummer=@TableVar&#xA;&#x9;insert @m Exec SSB_Metadata @TabellNummer=@TableVar&#xA;&#x9;insert @m2 Exec SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA;&#x9;RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA;&#x9;set noexec on&#xA;end catch&#xA;&#xA;&#xA;-- Executes&#xA;Exec sp_executesql @Truncate_Query&#xA;&#xA;Insert Into [SSB_12313 Mengder husholdningsavfall, materiale, behandling]&#xA;&#xA;Select dat.Kommunenummer,&#xA;&#x9;dat.Materialekode,&#xA;&#x9;met2.Materialenavn,&#xA;&#x9;dat.Variabel,&#xA;&#x9;met.Variabelnavn,&#xA;&#x9;dat.År, &#xA;&#x9;dat.Verdi&#xA;&#xA;from @t dat&#xA;Join @m met ON met.Variabel = dat.Variabel&#xA;Join @m2 met2 ON met2.Materialekode = dat.Materialekode&#xA;&#xA;-- I alt&#xA;Where dat.Behandlingkode = '1_sum'&#xA;-- Papp, Glass, Plast, Metaller, EE- avfall, Matavfall&#xA;AND dat.Materialekode IN ('2.01', '2.02', '2.03', '2.04', '2.05', '2.06')&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
       </DTS:Executables>
     </DTS:Executable>
   </DTS:Executables>
@@ -112,21 +129,25 @@
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
         <NodeLayout
-          Size="276,46.6666666666667"
-          Id="Package\Klima og Miljøvennlig Utvikling\Les SSB_11844 Kapasitet, tilgjengelighet og reiselengde"
-          TopLeft="77.7105654213461,197.850935627061" />
-        <NodeLayout
           Size="308,42.6666666666667"
           Id="Package\Klima og Miljøvennlig Utvikling\Les SSB_07903 Omdisponering av dyrka og dyrkbar jord til andre formål enn landbruk"
           TopLeft="41.4605659615131,18.9509407333912" />
         <NodeLayout
-          Size="276,46.6666666666667"
-          Id="Package\Klima og Miljøvennlig Utvikling\Les SSB_11776 Omdisponering, etter dyrka eller dyrkbar jord, formål, lovanvendelse"
-          TopLeft="74.9999946107467,138.699996303916" />
-        <NodeLayout
           Size="278,42.6666666666667"
           Id="Package\Klima og Miljøvennlig Utvikling\Les SSB_09594 Arealbruk og arealressurser (km²), arealklasse"
-          TopLeft="48.3333283414443,75.1999978923798" />
+          TopLeft="48.7499950019022,75.1999978923798" />
+        <NodeLayout
+          Size="276,46.6666666666667"
+          Id="Package\Klima og Miljøvennlig Utvikling\Les SSB_11776 Omdisponering, etter dyrka eller dyrkbar jord, formål, lovanvendelse"
+          TopLeft="46.6666616996129,138.266662978331" />
+        <NodeLayout
+          Size="276,46.6666666666667"
+          Id="Package\Klima og Miljøvennlig Utvikling\Les SSB_11844 Kapasitet, tilgjengelighet og reiselengde"
+          TopLeft="48.5438991892966,196.984268975892" />
+        <NodeLayout
+          Size="278,42.6666666666667"
+          Id="Package\Klima og Miljøvennlig Utvikling\Les SSB_12313 Mengder husholdningsavfall, materiale, behandling"
+          TopLeft="47.7105658683809,260.75093640967" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
