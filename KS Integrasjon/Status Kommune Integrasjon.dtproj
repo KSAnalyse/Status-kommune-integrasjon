@@ -37,6 +37,7 @@
           <SSIS:Package SSIS:Name="SSB Klima og Miljøvennlig Utvikling.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="Manuelle Data - Tabelloversikt.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="SSB Regioner.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="SSB Attraktive byer og steder.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="KS-SQL2018.Staging Status.conmgr" />
@@ -5052,10 +5053,10 @@
                 <SSIS:Property SSIS:Name="Name">SSB Klima og Miljøvennlig Utvikling</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">297</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">310</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{32B211A7-D4C6-4073-BEAE-F5917B1D3777}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{1421EF53-B470-4E37-9A8E-FD9BDE847ED8}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -5208,6 +5209,23 @@
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionGUID">{35783A7E-A141-4DDE-983A-B2B7E30B3571}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">0</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="SSB Attraktive byer og steder.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{43C5F9A6-8578-467F-9D78-CEE869791AE8}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">SSB Attraktive byer og steder</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">312</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{24309791-865B-459C-BB3A-9F7DCD00F248}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
