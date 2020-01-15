@@ -12,8 +12,8 @@
   DTS:ObjectName="SSB God oppvekst og liv"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="328"
-  DTS:VersionGUID="{8C1B8428-602F-4D08-8444-EBB55A432463}">
+  DTS:VersionBuild="332"
+  DTS:VersionGUID="{861848DD-2589-498B-8CDB-7B205FD5883B}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -101,16 +101,16 @@
         <NodeLayout
           Size="263.333333333334,72.6666666666667"
           Id="Package\God oppvekst og liv\Les SSB_11667 Framskrevet folkemengde 1 januar, etter kjønn, alder, innvandringskategori og landbakgrunn"
-          TopLeft="85.2105653095875,117.850943065721" />
+          TopLeft="74.7938987981412,136.050942740279" />
         <NodeLayout
           Size="263.333333333334,72.6666666666667"
           Id="Package\God oppvekst og liv\Les SSB_12276 Barn med hjelpe- eller omsorgstiltak, alder,  omsorgs- hjelpetiltak"
-          TopLeft="92.2938985373709,211.950943755346" />
+          TopLeft="82.2938986863825,239.684276592769" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="451.333333333334,814.666666666667"
-          Size="451.333333333334,858"
+          PanelSize="429.333333333334,814.666666666667"
+          Size="429.333333333334,857.333333333334"
           Id="Package\God oppvekst og liv"
           TopLeft="286.412696854282,42.22618884898" />
       </GraphLayout>
