@@ -39,6 +39,7 @@
           <SSIS:Package SSIS:Name="SSB Regioner.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="SSB Attraktive byer og steder.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="SSB God oppvekst og liv.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="SSB Mangfold og inkludering.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="KS-SQL2018.Staging Status.conmgr" />
@@ -5244,6 +5245,23 @@
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionGUID">{CA56B2D1-F81D-4A9F-BE63-4344AE29E2D0}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">0</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="SSB Mangfold og inkludering.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{BF9B5B80-140E-4C48-8F4A-CC207111D4A7}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">SSB Mangfold og inkludering</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">334</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{A559542E-E5ED-43DF-B666-15C25E123063}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
