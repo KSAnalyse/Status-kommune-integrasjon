@@ -40,6 +40,7 @@
           <SSIS:Package SSIS:Name="SSB Attraktive byer og steder.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="SSB God oppvekst og liv.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="SSB Mangfold og inkludering.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="SSB Selvstendige.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="KS-SQL2018.Staging Status.conmgr" />
@@ -5258,10 +5259,27 @@
                 <SSIS:Property SSIS:Name="Name">SSB Mangfold og inkludering</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">334</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">341</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{A559542E-E5ED-43DF-B666-15C25E123063}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{717BC25C-E418-4716-900B-7F440FE3AA1A}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">0</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="SSB Selvstendige.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{CE6435DF-2C91-4BCD-A7BA-7407C31778E3}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">SSB Selvstendige</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">347</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{3949B22A-B1B2-40C8-9131-CC1DF55A3BF1}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
