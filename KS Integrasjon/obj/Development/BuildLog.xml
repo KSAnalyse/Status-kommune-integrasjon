@@ -2,48 +2,58 @@
 <BuildLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ProjectInfo>
     <Name>Status Kommune Integrasjon</Name>
-    <LastWriteTime>2020-01-09T10:32:34.5628946Z</LastWriteTime>
+    <LastWriteTime>2020-03-17T08:42:18.8960947Z</LastWriteTime>
     <LastKnownProtectionLevel>DontSaveSensitive</LastKnownProtectionLevel>
   </ProjectInfo>
   <LastBuildInfos>
     <ProjectBuildItemInfo>
-      <Name>Manuelle Data.dtsx</Name>
-      <LastWriteTime>2019-04-24T10:24:46.6034735Z</LastWriteTime>
-      <LastKnownProtectionLevel>DontSaveSensitive</LastKnownProtectionLevel>
-    </ProjectBuildItemInfo>
-    <ProjectBuildItemInfo>
       <Name>Deploy.dtsx</Name>
-      <LastWriteTime>2018-10-18T11:52:23.2583629Z</LastWriteTime>
-      <LastKnownProtectionLevel>DontSaveSensitive</LastKnownProtectionLevel>
-    </ProjectBuildItemInfo>
-    <ProjectBuildItemInfo>
-      <Name>Sniffer.dtsx</Name>
-      <LastWriteTime>2018-10-16T11:30:26.9149664Z</LastWriteTime>
-      <LastKnownProtectionLevel>DontSaveSensitive</LastKnownProtectionLevel>
-    </ProjectBuildItemInfo>
-    <ProjectBuildItemInfo>
-      <Name>Autoinnlesing - Manuelle filer.dtsx</Name>
-      <LastWriteTime>2018-10-17T11:08:32.3035679Z</LastWriteTime>
-      <LastKnownProtectionLevel>DontSaveSensitive</LastKnownProtectionLevel>
-    </ProjectBuildItemInfo>
-    <ProjectBuildItemInfo>
-      <Name>Manuelle Data - Barnehager.dtsx</Name>
-      <LastWriteTime>2019-03-15T12:14:48.6056617Z</LastWriteTime>
+      <LastWriteTime>2020-03-17T08:43:23.4318018Z</LastWriteTime>
       <LastKnownProtectionLevel>DontSaveSensitive</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>SSB Klima og Miljøvennlig Utvikling.dtsx</Name>
-      <LastWriteTime>2020-01-09T10:03:06.51223Z</LastWriteTime>
+      <LastWriteTime>2020-01-17T16:03:56.6063033Z</LastWriteTime>
       <LastKnownProtectionLevel>DontSaveSensitive</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>Manuelle Data - Tabelloversikt.dtsx</Name>
-      <LastWriteTime>2020-01-09T10:15:17.3030399Z</LastWriteTime>
+      <LastWriteTime>2020-03-17T08:07:09.7971222Z</LastWriteTime>
       <LastKnownProtectionLevel>DontSaveSensitive</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>SSB Regioner.dtsx</Name>
-      <LastWriteTime>2020-01-09T10:32:15.2439084Z</LastWriteTime>
+      <LastWriteTime>2020-01-16T11:48:39.7903366Z</LastWriteTime>
+      <LastKnownProtectionLevel>DontSaveSensitive</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>SSB Attraktive byer og steder.dtsx</Name>
+      <LastWriteTime>2020-02-07T09:25:28.4895226Z</LastWriteTime>
+      <LastKnownProtectionLevel>DontSaveSensitive</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>SSB God oppvekst og liv.dtsx</Name>
+      <LastWriteTime>2020-01-16T11:48:39.7348767Z</LastWriteTime>
+      <LastKnownProtectionLevel>DontSaveSensitive</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>SSB Mangfold og inkludering.dtsx</Name>
+      <LastWriteTime>2020-01-16T11:48:39.7713251Z</LastWriteTime>
+      <LastKnownProtectionLevel>DontSaveSensitive</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>SSB Selvstendige.dtsx</Name>
+      <LastWriteTime>2020-01-17T14:47:10.8399945Z</LastWriteTime>
+      <LastKnownProtectionLevel>DontSaveSensitive</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>Alle SSB packager.dtsx</Name>
+      <LastWriteTime>2020-05-12T15:33:55.5796885Z</LastWriteTime>
+      <LastKnownProtectionLevel>DontSaveSensitive</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>Alle manuelle packager.dtsx</Name>
+      <LastWriteTime>2020-03-17T08:37:11.7600482Z</LastWriteTime>
       <LastKnownProtectionLevel>DontSaveSensitive</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
   </LastBuildInfos>

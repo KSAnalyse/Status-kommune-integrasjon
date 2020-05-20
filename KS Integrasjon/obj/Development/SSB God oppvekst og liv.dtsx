@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/15/2018 2:05:09 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="SQL2018"
+  DTS:CreatorName="KSINT\axel.hjelmervik.hansen"
+  DTS:DTSID="{2CD61980-DBC7-45EB-90DE-B234E69D00D7}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3026.27"
+  DTS:LocaleID="1044"
+  DTS:ObjectName="SSB God oppvekst og liv"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="332"
+  DTS:VersionGUID="{861848DD-2589-498B-8CDB-7B205FD5883B}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\God oppvekst og liv"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{E35945BE-EC60-4F9C-8729-12226DD67B34}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="God oppvekst og liv">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\God oppvekst og liv\Les SSB_07459 Befolkning, kjønn, alder"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{D2323B90-0BC8-4229-9143-13D28449F5FF}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Les SSB_07459 Befolkning, kjønn, alder"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{87175433-C4F6-4E6D-9D6E-61FE32283CE9}"
+              SQLTask:SqlStatementSource="Use [Staging_Status]&#xA;&#xA;-- Variabels&#xA;Declare @TableVar varchar(5)&#xA;Declare @TableName varchar(150)&#xA;&#xA;-- Query variabels&#xA;Declare @Truncate_Query nvarchar(200)&#xA;&#xA;Set @TableVar = '07459'&#xA;Set @TableName = (SELECT table_name FROM information_schema.tables WHERE table_name LIKE'SSB_' + @TableVar + '%')&#xA;&#xA;Set @Truncate_Query = N'Truncate Table [' + @TableName + ']'&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA;&#x9;-- Declares&#xA;&#x9;declare @t table(Kommunenummer varchar(50), Alderkode varchar(50), Variabel varchar(50), År Int, Verdi Numeric(18,4))&#xA;&#xA;&#x9;declare @m table(Kommunenavn varchar(150), Kommunenummer varchar(50), Kjønnavn varchar(150), Kjønnkode varchar(50), &#xA;&#x9;&#x9;Aldernavn varchar(150), Alderkode varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År Int, År2 Int)&#xA;&#x9;declare @m2 table(Kommunenavn varchar(150), Kommunenummer varchar(50), Kjønnkode varchar(150), Kjønnavn varchar(50), &#xA;&#x9;&#x9;Aldernavn varchar(150), Alderkode varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År Int, År2 Int)&#xA;&#x9;&#xA;&#x9;&#xA;&#x9;-- Inserts&#xA;&#x9;insert @t Exec SSB_Values_AlleAar @TabellNummer=@TableVar, @AntallAar='10'&#xA;&#x9;&#xA;&#x9;insert @m Exec SSB_Metadata @TabellNummer=@TableVar&#xA;&#x9;insert @m2 Exec SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA;&#x9;RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA;&#x9;set noexec on&#xA;end catch&#xA;&#xA;&#xA;-- Executes&#xA;Exec sp_executesql @Truncate_Query&#xA;&#xA;Insert Into [SSB_07459 Befolkning, kjønn, alder]&#xA;&#xA;Select dat.Kommunenummer,&#xA;&#x9;dat.Alderkode,&#xA;&#x9;met2.Aldernavn,&#xA;&#x9;dat.Variabel,&#xA;&#x9;met.Variabelnavn,&#xA;&#x9;dat.År, &#xA;&#x9;dat.Verdi&#xA;&#xA;from @t dat&#xA;Join @m met ON met.Variabel = dat.Variabel&#xA;Join @m2 met2 ON met2.Alderkode = dat.Alderkode&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\God oppvekst og liv\Les SSB_11667 Framskrevet folkemengde 1 januar, etter kjønn, alder, innvandringskategori og landbakgrunn"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{b8c9ac72-3249-43eb-8281-50b6a205098c}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Les SSB_11667 Framskrevet folkemengde 1 januar, etter kjønn, alder, innvandringskategori og landbakgrunn"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{87175433-C4F6-4E6D-9D6E-61FE32283CE9}"
+              SQLTask:SqlStatementSource="Use [Staging_Status]&#xA;&#xA;-- Variabels&#xA;Declare @TableVar varchar(5)&#xA;Declare @TableName varchar(150)&#xA;&#xA;-- Query variabels&#xA;Declare @Truncate_Query nvarchar(200)&#xA;&#xA;Set @TableVar = '11667'&#xA;Set @TableName = (SELECT table_name FROM information_schema.tables WHERE table_name LIKE'SSB_' + @TableVar + '%')&#xA;&#xA;Set @Truncate_Query = N'Truncate Table [' + @TableName + ']'&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA; -- Declares&#xA; declare @t table(Alderkode varchar(50), Innvandringskategorikode varchar(50), Alternativkode varchar(50), Variabel varchar(50), År Int, Verdi Numeric(18,4))&#xA;&#xA; declare @m table(Kjønnavn varchar(150), Kjønnkode varchar(50), Aldernavn varchar(150), Alderkode varchar(50), Innvandringskategorinavn varchar(150), Innvandringskategorikode varchar(50),&#xA;  Alternativnavn varchar(150), Alternativkode varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År Int, År2 Int)&#xA; declare @m2 table(Kjønnavn varchar(150), Kjønnkode varchar(50), Aldernavn varchar(150), Alderkode varchar(50), Innvandringskategorinavn varchar(150), Innvandringskategorikode varchar(50),&#xA;  Alternativnavn varchar(150), Alternativkode varchar(50), Variabelnavn varchar(150), Variabel varchar(50), År Int, År2 Int)&#xA;&#xA; &#xA; &#xA; -- Inserts&#xA; insert @t Exec SSB_Values_AlleAar @TabellNummer=@TableVar&#xA; &#xA; insert @m Exec SSB_Metadata @TabellNummer=@TableVar&#xA; insert @m2 Exec SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA; RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA; set noexec on&#xA;end catch&#xA;&#xA;&#xA;-- Executes&#xA;Exec sp_executesql @Truncate_Query&#xA;&#xA;Insert Into [SSB_11667 Framskrevet folkemengde 1. januar, etter kjønn, alder, innvandringskategori og landbakgrunn]&#xA;&#xA;Select Kommunenummer = '0',&#xA; dat.Alderkode,&#xA; met2.Aldernavn,&#xA; dat.Variabel,&#xA; met.Variabelnavn,&#xA; dat.År, &#xA; dat.Verdi&#xA;&#xA;from @t dat&#xA;Join @m met ON met.Variabel = dat.Variabel&#xA;Join @m2 met2 ON met2.Alderkode = dat.Alderkode&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\God oppvekst og liv\Les SSB_12276 Barn med hjelpe- eller omsorgstiltak, alder,  omsorgs- hjelpetiltak"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{379dc250-4474-4b7a-81fc-37678ee2fca5}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Les SSB_12276 Barn med hjelpe- eller omsorgstiltak, alder,  omsorgs- hjelpetiltak"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="2">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{87175433-C4F6-4E6D-9D6E-61FE32283CE9}"
+              SQLTask:SqlStatementSource="Use [Staging_Status]&#xA;&#xA;-- Variabels&#xA;Declare @TableVar varchar(5)&#xA;Declare @TableName varchar(150)&#xA;&#xA;-- Query variabels&#xA;Declare @Truncate_Query nvarchar(200)&#xA;&#xA;Set @TableVar = '12276'&#xA;Set @TableName = (SELECT table_name FROM information_schema.tables WHERE table_name LIKE'SSB_' + @TableVar + '%')&#xA;&#xA;Set @Truncate_Query = N'Truncate Table [' + @TableName + ']'&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA; -- Declares&#xA; declare @t table(Kommunenummer varchar(50), Alderkode varchar(50), Variabel varchar(50), År Int, Verdi Numeric(18,4))&#xA;&#xA; declare @m table(Kommunenavn varchar(150), Kommunenummer varchar(50), Aldernavn varchar(150), Alderkode varchar(50), Omsorgsnavn varchar(150), Omsorgkode varchar(50),&#xA;&#x9;Variabelnavn varchar(150), Variabel varchar(50), År Int, År2 Int)&#xA; declare @m2 table(Kommunenavn varchar(150), Kommunenummer varchar(50), Aldernavn varchar(150), Alderkode varchar(50), Omsorgsnavn varchar(150), Omsorgkode varchar(50),&#xA;&#x9;Variabelnavn varchar(150), Variabel varchar(50), År Int, År2 Int)&#xA;&#xA; &#xA; &#xA; -- Inserts&#xA; insert @t Exec SSB_Values_AlleAar @TabellNummer=@TableVar, @AntallAar = '10'&#xA; &#xA; insert @m Exec SSB_Metadata @TabellNummer=@TableVar&#xA; insert @m2 Exec SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA; RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA; set noexec on&#xA;end catch&#xA;&#xA;&#xA;-- Executes&#xA;Exec sp_executesql @Truncate_Query&#xA;&#xA;Insert Into [SSB_12276 Barn med hjelpe- eller omsorgstiltak, alder,  omsorgs-/hjelpetiltak]&#xA;&#xA;Select dat.Kommunenummer,&#xA; dat.Alderkode,&#xA; met2.Aldernavn,&#xA; dat.Variabel,&#xA; met.Variabelnavn,&#xA; dat.År, &#xA; dat.Verdi&#xA;&#xA;from @t dat&#xA;Join @m met ON met.Variabel = dat.Variabel&#xA;Join @m2 met2 ON met2.Alderkode = dat.Alderkode&#xA;&#xA;-- 0-22 år&#xA;Where dat.Alderkode = 'F000-022'&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="263.333333333334,58.6666666666667"
+          Id="Package\God oppvekst og liv\Les SSB_07459 Befolkning, kjønn, alder"
+          TopLeft="83.9605653282139,40.784275655188" />
+        <NodeLayout
+          Size="263.333333333334,72.6666666666667"
+          Id="Package\God oppvekst og liv\Les SSB_11667 Framskrevet folkemengde 1 januar, etter kjønn, alder, innvandringskategori og landbakgrunn"
+          TopLeft="74.7938987981412,136.050942740279" />
+        <NodeLayout
+          Size="263.333333333334,72.6666666666667"
+          Id="Package\God oppvekst og liv\Les SSB_12276 Barn med hjelpe- eller omsorgstiltak, alder,  omsorgs- hjelpetiltak"
+          TopLeft="82.2938986863825,239.684276592769" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="429.333333333334,814.666666666667"
+          Size="429.333333333334,857.333333333334"
+          Id="Package\God oppvekst og liv"
+          TopLeft="286.412696854282,42.22618884898" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

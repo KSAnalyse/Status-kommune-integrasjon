@@ -12,8 +12,8 @@
   DTS:ObjectName="Deploy"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="19"
-  DTS:VersionGUID="{E48ADF05-786B-4D5C-BB47-BCC30988FE6A}">
+  DTS:VersionBuild="22"
+  DTS:VersionGUID="{01F6666B-80FD-4157-B399-0009BF649AD8}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -24,7 +24,7 @@
       DTS:ObjectName="KS-SQL2018">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=KS-SQL2018;Initial Catalog=Tabular Views;Provider=MSOLAP.8;Integrated Security=SSPI;Impersonation Level=Impersonate;" />
+          DTS:ConnectionString="Data Source=KS-SQL2018;Initial Catalog=Status Kommune data;Provider=MSOLAP.8;Integrated Security=SSPI;Impersonation Level=Impersonate;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -43,7 +43,7 @@
       <DTS:ObjectData>
         <ASProcessingData
           ConnectionName="KS-SQL2018"
-          ProcessingCommands="{&#xA;  &quot;sequence&quot;: {&#xA;    &quot;operations&quot;: [&#xA;      {&#xA;        &quot;refresh&quot;: {&#xA;          &quot;type&quot;: &quot;full&quot;,&#xA;          &quot;objects&quot;: [&#xA;            {&#xA;              &quot;database&quot;: &quot;Tabular Views&quot;&#xA;            }&#xA;          ]&#xA;        }&#xA;      }&#xA;    ]&#xA;  }&#xA;}" />
+          ProcessingCommands="{&#xA;  &quot;sequence&quot;: {&#xA;    &quot;operations&quot;: [&#xA;      {&#xA;        &quot;refresh&quot;: {&#xA;          &quot;type&quot;: &quot;full&quot;,&#xA;          &quot;objects&quot;: [&#xA;            {&#xA;              &quot;database&quot;: &quot;Status Kommune data&quot;&#xA;            }&#xA;          ]&#xA;        }&#xA;      }&#xA;    ]&#xA;  }&#xA;}" />
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
