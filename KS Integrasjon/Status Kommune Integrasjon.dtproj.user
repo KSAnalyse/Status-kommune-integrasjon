@@ -4,6 +4,10 @@
     <Configuration>
       <Name>Development</Name>
       <Options>
+        <AssessmentRuleSuppressionSetting />
+        <UseWinAuth>false</UseWinAuth>
+        <WinAuthUserName />
+        <WinAuthDomain />
         <ServerName>KS-SQL2018</ServerName>
         <PathOnServer>/SSISDB/Status Kommune Integrasjon/Status Kommune Integrasjon</PathOnServer>
         <UserIDs />
