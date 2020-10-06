@@ -7,13 +7,13 @@
   DTS:CreatorName="KSINT\8093AHA"
   DTS:DTSID="{A564E82F-5EBF-4109-889D-BB9F895EE43F}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="14.0.3026.27"
+  DTS:LastModifiedProductVersion="15.0.2000.121"
   DTS:LocaleID="1044"
   DTS:ObjectName="SSB Regioner"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="1"
-  DTS:VersionGUID="{35783A7E-A141-4DDE-983A-B2B7E30B3571}">
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{7E6BD5BC-1030-4F2C-AE8B-53046029F827}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -42,7 +42,7 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{87175433-C4F6-4E6D-9D6E-61FE32283CE9}"
-              SQLTask:SqlStatementSource="Truncate Table dbo.SSB_Fylker&#xA;&#xA;Insert dbo.SSB_Fylker Exec dbo.SSB_KLASS_Fylker" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="-- Variabels&#xA;Declare @TableName varchar(150)&#xA;&#xA;-- Query variabels&#xA;Declare @Truncate_Query nvarchar(200)&#xA;&#xA;Set @TableName = 'SSB_Fylker'&#xA;&#xA;Set @Truncate_Query = N'Truncate Table [' + @TableName + ']'&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA;&#x9;-- Declares&#xA;&#x9;declare @t table(Fylkesnummer varchar(50), Navn varchar(100), GyldigFraDato datetime, GyldigTilDato datetime)&#xA;&#x9;&#xA;&#x9;-- Inserts&#xA;&#x9;Insert @t Exec SSB_KLASS_Fylker&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA;&#x9;RAISERROR('Did not find values in the table %s',18, 1, @TableName)&#xA;&#x9;set noexec on&#xA;end catch&#xA;&#xA;&#xA;-- Executes&#xA;Exec sp_executesql @Truncate_Query&#xA;&#xA;Insert Into [SSB_Fylker]&#xA;&#xA;Select * From @t&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -59,7 +59,7 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{87175433-C4F6-4E6D-9D6E-61FE32283CE9}"
-              SQLTask:SqlStatementSource="Truncate Table dbo.[SSB_Fylker Endringer]&#xA;&#xA;Insert dbo.[SSB_Fylker Endringer] Exec dbo.SSB_KLASS_Fylker_Endringer" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="-- Variabels&#xA;Declare @TableName varchar(150)&#xA;&#xA;-- Query variabels&#xA;Declare @Truncate_Query nvarchar(200)&#xA;&#xA;Set @TableName = 'SSB_Fylker Endringer'&#xA;&#xA;Set @Truncate_Query = N'Truncate Table [' + @TableName + ']'&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA;&#x9;-- Declares&#xA;&#x9;declare @t table(gammeltKommunenummer varchar(50), gammeltNavn varchar(100), nyttKommunenummer varchar(50), nyttNavn varchar(100), endringsDato datetime)&#xA;&#x9;&#xA;&#x9;-- Inserts&#xA;&#x9;Insert @t Exec SSB_KLASS_Fylker_Endringer&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA;&#x9;RAISERROR('Did not find values in the table %s',18, 1, @TableName)&#xA;&#x9;set noexec on&#xA;end catch&#xA;&#xA;&#xA;-- Executes&#xA;Exec sp_executesql @Truncate_Query&#xA;&#xA;Insert Into [SSB_Fylker Endringer]&#xA;&#xA;Select * From @t&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -76,7 +76,7 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{87175433-C4F6-4E6D-9D6E-61FE32283CE9}"
-              SQLTask:SqlStatementSource="Truncate Table SSB_Kommuner&#xA;&#xA;Insert SSB_Kommuner Exec dbo.SSB_KLASS_Kommuner" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="-- Variabels&#xA;Declare @TableName varchar(150)&#xA;&#xA;-- Query variabels&#xA;Declare @Truncate_Query nvarchar(200)&#xA;&#xA;Set @TableName = 'SSB_Kommuner'&#xA;&#xA;Set @Truncate_Query = N'Truncate Table [' + @TableName + ']'&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA;&#x9;-- Declares&#xA;&#x9;declare @t table(Kommunenummer varchar(50), Navn varchar(100), GyldigFraDato datetime, GyldigTilDato datetime)&#xA;&#x9;&#xA;&#x9;-- Inserts&#xA;&#x9;Insert @t Exec SSB_KLASS_Kommuner&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA;&#x9;RAISERROR('Did not find values in the table %s',18, 1, @TableName)&#xA;&#x9;set noexec on&#xA;end catch&#xA;&#xA;&#xA;-- Executes&#xA;Exec sp_executesql @Truncate_Query&#xA;&#xA;Insert Into [SSB_Kommuner]&#xA;&#xA;Select * From @t&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -93,7 +93,7 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{87175433-C4F6-4E6D-9D6E-61FE32283CE9}"
-              SQLTask:SqlStatementSource="Truncate Table dbo.[SSB_Kommuner Endringer]&#xA;Insert dbo.[SSB_Kommuner Endringer] Exec dbo.SSB_KLASS_Kommuner_Endringer" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="-- Variabels&#xA;Declare @TableName varchar(150)&#xA;&#xA;-- Query variabels&#xA;Declare @Truncate_Query nvarchar(200)&#xA;&#xA;Set @TableName = 'SSB_Kommuner Endringer'&#xA;&#xA;Set @Truncate_Query = N'Truncate Table [' + @TableName + ']'&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA;&#x9;-- Declares&#xA;&#x9;declare @t table(gammeltKommunenummer varchar(50), gammeltNavn varchar(100), nyttKommunenummer varchar(50), nyttNavn varchar(100), endringsDato datetime)&#xA;&#x9;&#xA;&#x9;-- Inserts&#xA;&#x9;Insert @t Exec SSB_KLASS_Kommuner_Endringer&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA;&#x9;RAISERROR('Did not find values in the table %s',18, 1, @TableName)&#xA;&#x9;set noexec on&#xA;end catch&#xA;&#xA;&#xA;-- Executes&#xA;Exec sp_executesql @Truncate_Query&#xA;&#xA;Insert Into [SSB_Kommuner Endringer]&#xA;&#xA;Select * From @t&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -112,26 +112,26 @@
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
         <NodeLayout
-          Size="126.666666666667,42.6666666666667"
+          Size="126.4,42.4"
           Id="Package\Kommunedata\Les Fylker"
           TopLeft="39.7499951757492,84.1999975049497" />
         <NodeLayout
-          Size="162.666666666667,42"
+          Size="162.4,41.6"
           Id="Package\Kommunedata\Les Fylker Endringer"
           TopLeft="43,135" />
         <NodeLayout
-          Size="164,42.6666666666667"
+          Size="148.8,41.6"
           Id="Package\Kommunedata\Les Kommuner"
           TopLeft="41.4166618175806,24.399998574257" />
         <NodeLayout
-          Size="162.666666666667,42"
+          Size="162.4,41.6"
           Id="Package\Kommunedata\Les Kommuner Endringer"
           TopLeft="44,192" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="278,309.333333333334"
-          Size="278,352"
+          PanelSize="278.4,309.6"
+          Size="278.4,352.8"
           Id="Package\Kommunedata"
           TopLeft="312.083328682929,175.066663536231" />
       </GraphLayout>

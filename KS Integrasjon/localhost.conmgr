@@ -1,0 +1,10 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="localhost"
+  DTS:DTSID="{1E017247-3C07-4AEF-B016-68C2542152BA}"
+  DTS:CreationName="MSOLAP100">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=vk-sxd0e-003;PROVIDER=MSOLAP;Impersonation Level=Impersonate;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
