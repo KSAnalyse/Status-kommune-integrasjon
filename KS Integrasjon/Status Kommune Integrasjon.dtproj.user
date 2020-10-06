@@ -8,8 +8,8 @@
         <UseWinAuth>false</UseWinAuth>
         <WinAuthUserName />
         <WinAuthDomain />
-        <ServerName>KS-SQL2018</ServerName>
-        <PathOnServer>/SSISDB/Status Kommune Integrasjon/Status Kommune Integrasjon</PathOnServer>
+        <ServerName>VK-SXD0E-002</ServerName>
+        <PathOnServer>/SSISDB/Status Kommune/Status Kommune Integrasjon</PathOnServer>
         <UserIDs />
         <UserPasswords />
         <OfflineMode>false</OfflineMode>

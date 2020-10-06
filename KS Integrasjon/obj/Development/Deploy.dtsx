@@ -7,24 +7,24 @@
   DTS:CreatorName="KSINT\axel.hjelmervik.hansen"
   DTS:DTSID="{CFAEFF75-3BEC-43D2-872D-DA2491A9FB89}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="14.0.3026.27"
+  DTS:LastModifiedProductVersion="15.0.2000.93"
   DTS:LocaleID="1044"
   DTS:ObjectName="Deploy"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="22"
-  DTS:VersionGUID="{01F6666B-80FD-4157-B399-0009BF649AD8}">
+  DTS:VersionBuild="27"
+  DTS:VersionGUID="{DC246310-135A-4EE0-8AC2-1B7303AC2C1F}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[KS-SQL2018]"
+      DTS:refId="Package.ConnectionManagers[VK-SXD0E-002.Status Kommune data]"
       DTS:CreationName="MSOLAP100"
-      DTS:DTSID="{9918AADF-5628-4D6A-9D02-041A2F8C3370}"
-      DTS:ObjectName="KS-SQL2018">
+      DTS:DTSID="{F7F3E546-AAC0-407C-AD21-684FD60A4442}"
+      DTS:ObjectName="VK-SXD0E-002.Status Kommune data">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=KS-SQL2018;Initial Catalog=Status Kommune data;Provider=MSOLAP.8;Integrated Security=SSPI;Impersonation Level=Impersonate;" />
+          DTS:ConnectionString="Data Source=VK-SXD0E-002;Initial Catalog=Status Kommune data;Provider=MSOLAP.8;Integrated Security=SSPI;Impersonation Level=Impersonate;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -42,7 +42,7 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <ASProcessingData
-          ConnectionName="KS-SQL2018"
+          ConnectionName="VK-SXD0E-002.Status Kommune data"
           ProcessingCommands="{&#xA;  &quot;sequence&quot;: {&#xA;    &quot;operations&quot;: [&#xA;      {&#xA;        &quot;refresh&quot;: {&#xA;          &quot;type&quot;: &quot;full&quot;,&#xA;          &quot;objects&quot;: [&#xA;            {&#xA;              &quot;database&quot;: &quot;Status Kommune data&quot;&#xA;            }&#xA;          ]&#xA;        }&#xA;      }&#xA;    ]&#xA;  }&#xA;}" />
       </DTS:ObjectData>
     </DTS:Executable>
@@ -60,14 +60,14 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
         <NodeLayout
-          Size="237.333333333334,42.6666666666667"
+          Size="237,43"
           Id="Package\Analysis Services Processing Task"
           TopLeft="33.0208328412846,46.908332494547" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
   <ConnectionManager
-    design-time-name="Package.ConnectionManagers[KS-SQL2018]">
+    design-time-name="Package.ConnectionManagers[VK-SXD0E-002.Status Kommune data]">
     <ProjectReferenceName></ProjectReferenceName>
   </ConnectionManager>
 </Objects>]]></DTS:DesignTimeProperties>
