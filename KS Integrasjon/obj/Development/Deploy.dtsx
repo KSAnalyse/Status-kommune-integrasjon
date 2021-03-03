@@ -12,8 +12,8 @@
   DTS:ObjectName="Deploy"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="30"
-  DTS:VersionGUID="{F1444D2B-2181-44A7-A076-BBE3D3D36769}">
+  DTS:VersionBuild="51"
+  DTS:VersionGUID="{56C3088D-9F89-4433-86A5-AB88018F1005}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -22,7 +22,7 @@
       DTS:refId="Package\Analysis Services Processing Task"
       DTS:CreationName="Microsoft.DTSProcessingTask"
       DTS:Description="Analysis Services Processing Task"
-      DTS:DTSID="{70277412-F089-4169-8F81-47A3B334EDAC}"
+      DTS:DTSID="{1A656414-02C7-4751-8A6B-9626D4E3EA87}"
       DTS:ExecutableType="Microsoft.DTSProcessingTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Analysis Services Processing Task"
@@ -48,9 +48,9 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
         <NodeLayout
-          Size="236.8,43.2"
+          Size="236,41.6"
           Id="Package\Analysis Services Processing Task"
-          TopLeft="33.0208328412846,46.908332494547" />
+          TopLeft="137.142859478386,101.552942600712" />
       </GraphLayout>
     </LayoutInfo>
   </Package>

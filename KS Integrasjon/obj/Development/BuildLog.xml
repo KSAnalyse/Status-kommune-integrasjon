@@ -2,43 +2,43 @@
 <BuildLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ProjectInfo>
     <Name>Status Kommune Integrasjon</Name>
-    <LastWriteTime>2020-10-06T07:37:39.8134251Z</LastWriteTime>
+    <LastWriteTime>2020-12-08T11:56:20.9476297Z</LastWriteTime>
     <LastKnownProtectionLevel>DontSaveSensitive</LastKnownProtectionLevel>
   </ProjectInfo>
   <LastBuildInfos>
     <ProjectBuildItemInfo>
       <Name>Deploy.dtsx</Name>
-      <LastWriteTime>2020-10-06T07:27:38.7583219Z</LastWriteTime>
+      <LastWriteTime>2020-12-08T11:56:19.2152878Z</LastWriteTime>
       <LastKnownProtectionLevel>DontSaveSensitive</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>SSB Klima og Miljøvennlig Utvikling.dtsx</Name>
-      <LastWriteTime>2020-10-06T07:51:21.4070567Z</LastWriteTime>
+      <LastWriteTime>2020-12-08T11:01:12.6591757Z</LastWriteTime>
       <LastKnownProtectionLevel>DontSaveSensitive</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>SSB Regioner.dtsx</Name>
-      <LastWriteTime>2020-10-06T08:07:52.4873519Z</LastWriteTime>
+      <LastWriteTime>2020-12-08T11:01:12.6601758Z</LastWriteTime>
       <LastKnownProtectionLevel>DontSaveSensitive</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>SSB Attraktive byer og steder.dtsx</Name>
-      <LastWriteTime>2020-10-06T07:38:28.5572323Z</LastWriteTime>
+      <LastWriteTime>2020-12-08T11:01:12.6581759Z</LastWriteTime>
       <LastKnownProtectionLevel>DontSaveSensitive</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>SSB God oppvekst og liv.dtsx</Name>
-      <LastWriteTime>2020-10-06T07:48:54.5140315Z</LastWriteTime>
+      <LastWriteTime>2020-12-08T11:01:12.6591757Z</LastWriteTime>
       <LastKnownProtectionLevel>DontSaveSensitive</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>SSB Mangfold og inkludering.dtsx</Name>
-      <LastWriteTime>2020-10-06T07:53:54.8431268Z</LastWriteTime>
+      <LastWriteTime>2020-12-08T11:01:12.6601758Z</LastWriteTime>
       <LastKnownProtectionLevel>DontSaveSensitive</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>SSB Selvstendige.dtsx</Name>
-      <LastWriteTime>2020-10-06T08:18:09.9703032Z</LastWriteTime>
+      <LastWriteTime>2020-12-08T11:01:12.6611766Z</LastWriteTime>
       <LastKnownProtectionLevel>DontSaveSensitive</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
   </LastBuildInfos>
