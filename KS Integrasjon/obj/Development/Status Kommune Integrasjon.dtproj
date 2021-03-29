@@ -274,10 +274,10 @@
                 <SSIS:Property SSIS:Name="Name">SSB Klima og Miljøvennlig Utvikling</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">325</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">326</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{25F52673-7A64-49DB-9C9A-3DEC9AC631F0}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{097E2380-247C-4D06-811D-3EDD4F5E0E13}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>

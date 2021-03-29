@@ -12,8 +12,8 @@
   DTS:ObjectName="SSB Klima og Miljøvennlig Utvikling"
   DTS:PackageType="5"
   DTS:ProtectionLevel="0"
-  DTS:VersionBuild="325"
-  DTS:VersionGUID="{25F52673-7A64-49DB-9C9A-3DEC9AC631F0}">
+  DTS:VersionBuild="326"
+  DTS:VersionGUID="{097E2380-247C-4D06-811D-3EDD4F5E0E13}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -132,7 +132,7 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{87175433-C4F6-4E6D-9D6E-61FE32283CE9}"
-              SQLTask:SqlStatementSource="-- Variabels&#xA;Declare @TableVar varchar(5)&#xA;Declare @TableName varchar(150)&#xA;&#xA;-- Query variabels&#xA;Declare @Truncate_Query nvarchar(200)&#xA;&#xA;Set @TableVar = '11776'&#xA;Set @TableName = (SELECT table_name FROM information_schema.tables WHERE table_name LIKE'SSB_' + @TableVar + '%')&#xA;&#xA;Set @Truncate_Query = N'Truncate Table [' + @TableName + ']'&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA;&#x9;-- Declares&#xA;&#x9;declare @t table([Dyrka/dyrkbarkode] varchar(50), Formålkode varchar(50), Kommunenummer varchar(50), Lovanvendelsekode varchar(50), Variabel varchar(50), År Int, Verdi Numeric(18,4))&#xA;&#xA;&#x9;declare @m table([Dyrka/dyrkbarnavn] varchar(150), [Dyrka/dyrkbarkode] varchar(50), Formålnavn varchar(150), Formålkode varchar(50), &#xA;&#x9;&#x9;&#x9;Kommunenavn varchar(150), Kommunenummer varchar(50), Lovanvendelsenavn varchar(150), Lovanvendelsekode varchar(50), Variabelnavn varchar(150), &#xA;&#x9;&#x9;&#x9;Variabel varchar(50), År Int, År2 Int)&#xA;&#x9;declare @m2 table([Dyrka/dyrkbarnavn] varchar(150), [Dyrka/dyrkbarkode] varchar(50), Formålnavn varchar(150), Formålkode varchar(50), &#xA;&#x9;&#x9;&#x9;Kommunenavn varchar(150), Kommunenummer varchar(50), Lovanvendelsenavn varchar(150), Lovanvendelsekode varchar(50), Variabelnavn varchar(150), &#xA;&#x9;&#x9;&#x9;Variabel varchar(50), År Int, År2 Int)&#xA;&#x9;&#xA;&#x9;-- Inserts&#xA;&#x9;insert @t Exec SSB_Values_AlleAar @TabellNummer=@TableVar&#xA;&#x9;insert @m Exec SSB_Metadata @TabellNummer=@TableVar&#xA;&#x9;insert @m2 Exec SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA;&#x9;RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA;&#x9;set noexec on&#xA;end catch&#xA;&#xA;&#xA;-- Executes&#xA;Exec sp_executesql @Truncate_Query&#xA;&#xA;Insert Into [SSB_11776 Omdisponering, etter dyrka eller dyrkbar jord, formål, lovanvendelse]&#xA;&#xA;Select dat.Kommunenummer,&#xA;&#x9;dat.Formålkode,&#xA;&#x9;met2.Formålnavn,&#xA;&#x9;dat.Variabel,&#xA;&#x9;met.Variabelnavn,&#xA;&#x9;dat.År, &#xA;&#x9;SUM(dat.Verdi)&#xA;&#xA;from @t dat&#xA;Join @m met ON met.Variabel = dat.Variabel&#xA;Join @m2 met2 ON met2.Formålkode = dat.Formålkode&#xA;&#xA;-- Alle formål, Skogplanting&#xA;Where dat.Formålkode NOT IN ('total', 'skog')&#xA;AND dat.Lovanvendelsekode = 'total'&#xA;AND dat.[Dyrka/dyrkbarkode] = 'total'&#xA;&#xA;Group By dat.Kommunenummer, dat.Variabel, met.Variabelnavn, dat.Formålkode, met2.Formålnavn, dat.År&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="-- Variabels&#xA;Declare @TableVar varchar(5)&#xA;Declare @TableName varchar(150)&#xA;&#xA;-- Query variabels&#xA;Declare @Truncate_Query nvarchar(200)&#xA;&#xA;Set @TableVar = '11776'&#xA;Set @TableName = (SELECT table_name FROM information_schema.tables WHERE table_name LIKE'SSB_' + @TableVar + '%')&#xA;&#xA;Set @Truncate_Query = N'Truncate Table [' + @TableName + ']'&#xA;&#xA;-- Prøv å hente data og sett dette inn i variabler&#xA;-- Bruker SSB_Values_AlleAar for å hente data fra SSB og SSB_Metadata for å hente metadata&#xA;begin try&#xA;&#x9;-- Declares&#xA;&#x9;declare @t table([Dyrka/dyrkbarkode] varchar(50), Formålkode varchar(50), Kommunenummer varchar(50), Lovanvendelsekode varchar(50), Variabel varchar(50), År Int, Verdi Numeric(18,4))&#xA;&#xA;&#x9;declare @m table([Dyrka/dyrkbarnavn] varchar(150), [Dyrka/dyrkbarkode] varchar(50), Formålnavn varchar(150), Formålkode varchar(50), &#xA;&#x9;&#x9;&#x9;Kommunenavn varchar(150), Kommunenummer varchar(50), Lovanvendelsenavn varchar(150), Lovanvendelsekode varchar(50), Variabelnavn varchar(150), &#xA;&#x9;&#x9;&#x9;Variabel varchar(50), År Int, År2 Int)&#xA;&#x9;&#xA;&#x9;-- Inserts&#xA;&#x9;insert @t Exec SSB_Values_AlleAar2 @TabellNummer=@TableVar&#xA;&#x9;insert @m Exec SSB_Metadata @TabellNummer=@TableVar&#xA;end try&#xA;&#xA;-- Noe gikk galt ved henting av data. Koden som følger skal derfor ikke eksekveres&#xA;begin catch&#xA;&#x9;RAISERROR('Did not find values in the table %s',18, 1, @TableVar)&#xA;&#x9;set noexec on&#xA;end catch&#xA;&#xA;&#xA;-- Executes&#xA;Exec sp_executesql @Truncate_Query&#xA;&#xA;Insert Into [SSB_11776 Omdisponering, etter dyrka eller dyrkbar jord, formål, lovanvendelse]&#xA;&#xA;Select dat.Kommunenummer,&#xA;&#x9;dat.Formålkode,&#xA;&#x9;met2.Formålnavn,&#xA;&#x9;dat.Variabel,&#xA;&#x9;met.Variabelnavn,&#xA;&#x9;dat.År, &#xA;&#x9;SUM(dat.Verdi)&#xA;&#xA;from @t dat&#xA;Join @m met ON met.Variabel = dat.Variabel&#xA;Join @m met2 ON met2.Formålkode = dat.Formålkode&#xA;&#xA;-- Alle formål, Skogplanting&#xA;Where dat.Formålkode NOT IN ('total', 'skog')&#xA;AND dat.Lovanvendelsekode = 'total'&#xA;AND dat.[Dyrka/dyrkbarkode] = 'total'&#xA;&#xA;Group By dat.Kommunenummer, dat.Variabel, met.Variabelnavn, dat.Formålkode, met2.Formålnavn, dat.År&#xA;&#xA;set noexec off" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -156,7 +156,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Les SSB_11844 Kapasitet, tilgjengelighet og reiselengde"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -173,7 +173,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Les SSB_13136 Avfall frå hushalda, materiale, behandling, nedstrømsløsning"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
